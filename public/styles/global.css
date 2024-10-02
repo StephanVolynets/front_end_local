@@ -1,0 +1,84 @@
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: var(--border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+  border-radius: 2px;
+}
+
+/* Fonts*/
+
+@font-face {
+  font-family: 'ArchivoRegular';
+  src: url('/fonts/Archivo.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'ArchivoMedium';
+  src: url('/fonts/Archivo.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'ArchivoSemibold';
+  src: url('/fonts/Archivo.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'ArchivoBold';
+  src: url('/fonts/Archivo.ttf') format('truetype');
+  font-weight: 700;
+}
+
+/* Letter spacing for everything, some specific texts may have a little bit more */
+
+html, body, button, input, textarea, select, p {
+  letter-spacing: -0.02em; /* aprox -2% */
+}
+
+/* removing anoying auto-margin in text tags */
+
+p {
+  margin: 0;
+}
+
+/* Colors */
+
+:root {
+  --primary: #190D21;
+  --secondary: #69626F;
+  --tertiary: #B0ADB1;
+  --background: #FFFFFF;
+  --border: #F4F4F4;
+  --accent-one: #FF9900;
+  --accent-two: #FF6699;
+  --red: #FF0000;
+  --green: #009933;
+  --input: #FBFBFB;
+}
+
+/* global tag properties */
+
+body{
+  background-color: var(--background);
+  margin: 0px;
+  width: 100%;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+ul{
+  list-style-type: none;
+}
+
+svg{
+  flex-shrink: 0;
+}

@@ -1,0 +1,111 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropButton {
+  width: 157px !important;
+  box-sizing: border-box;
+  display: flex;
+  border-radius: 10px;
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  height: 44px;
+  padding: 10px 15px;
+  font-family:'ArchivoRegular';
+  font-size: 16px;
+  color: var(--secondary);
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  white-space: nowrap;
+  transition: all 0.1s ease-in-out;
+}
+
+.dropButton:hover{
+  background-color: var(--border);
+}
+
+.dropButtonOpen{
+  border-radius: 10px 10px 0 0;
+}
+
+.dropdownContent {
+  display: block;
+  position: absolute;
+  background-color: var(--background);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02);
+  z-index: 1000;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid var(--border);
+  margin: -1px 0 0 0;
+  animation: dropdownAppearing 0.15s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+  right: 0;
+  padding: 0;
+}
+
+@keyframes dropdownAppearing {
+  0% {
+    transform: translateY(-2%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.dropdownContent.disabledDropdownContent{
+  animation: dropdownDisappearing 0.15s ease-in-out forwards;
+}
+
+@keyframes dropdownDisappearing {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-2%);
+    opacity: 0;
+  }
+}
+
+.dropdownSelectContainer{
+  width: 157px;
+}
+
+.dropdownSelect{
+  color: var(--secondary);
+  background-color: transparent;
+  border: none;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  font-family: 'ArchivoRegular';
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  align-items: center;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  border-bottom: 1px solid var(--border);
+}
+
+.dropdownSelect:hover {
+  background-color: var(--input);
+}
+
+.dropdownSelectContainer:last-child .dropdownSelect {
+  border-bottom: none;
+}
+
+@media (max-width: 800px) {
+  .dropdowns, .dropdown, .dropButton, .dropdownContent {
+    width: 100%;
+  }
+}
