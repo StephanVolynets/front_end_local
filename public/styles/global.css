@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--black);
+  background: var(--accent-one);
   border-radius: 2px;
 }
 
@@ -35,16 +35,16 @@
   font-weight: 700;
 }
 
+@font-face {
+  font-family: 'ArchivoBlack';
+  src: url('/fonts/Archivo.ttf') format('truetype');
+  font-weight: 900;
+}
+
 /* Letter spacing for everything, some specific texts may have a little bit more */
 
 html, body, button, input, textarea, select, p {
   letter-spacing: -0.02em; /* aprox -2% */
-}
-
-/* removing anoying auto-margin in text tags */
-
-p {
-  margin: 0;
 }
 
 /* Colors */
@@ -68,6 +68,10 @@ body{
   background-color: var(--background);
   margin: 0px;
   width: 100%;
+}
+
+p, h1 {
+  margin: 0;
 }
 
 a{

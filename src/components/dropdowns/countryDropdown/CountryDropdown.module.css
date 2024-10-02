@@ -4,7 +4,7 @@
 }
 
 .dropButton {
-  width: 157px !important;
+  width: 158px !important;
   box-sizing: border-box;
   display: flex;
   border-radius: 10px;
@@ -74,7 +74,7 @@
 }
 
 .dropdownSelectContainer{
-  width: 157px;
+  width: 100%;
 }
 
 .dropdownSelect{
@@ -97,11 +97,16 @@
 }
 
 .dropdownSelect:hover {
-  background-color: var(--input);
+  background-color: var(--border);
+  box-sizing: border-box;
 }
 
 .dropdownSelectContainer:last-child .dropdownSelect {
   border-bottom: none;
+}
+
+.dropdownSelectContainer:last-child .dropdownSelect {
+  border-radius: 0 0 10px 10px;
 }
 
 @media (max-width: 800px) {
