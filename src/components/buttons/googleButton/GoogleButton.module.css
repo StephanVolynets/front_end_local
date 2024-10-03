@@ -1,0 +1,22 @@
+.googleButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--primary);
+  color: var(--background);
+  font-size: 16px;
+  border: none;
+  font-family: 'ArchivoMedium';
+  cursor: pointer;
+  transition: all 0.1s;
+  height: 44px;
+  width: 100%;
+}
+
+.googleButton:hover{
+  background-color: var(--border);
+  color: var(--primary);
+}

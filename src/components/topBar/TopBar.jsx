@@ -5,19 +5,21 @@ import styles from './TopBar.module.css'
 import Link from 'next/link'
 
 import SilicoreLogo from '@/components/icons/silicoreLogo'
-import CountryButton from '@/components/dropdowns/countryDropdown/CountryDropdown'
+import CountryDropdown from '@/components/dropdowns/countryDropdown/CountryDropdown'
 import LoginButton from '@/components/buttons/loginButton/LoginButton'
+import LoggedDropdown from '@/components/dropdowns/loggedDropdown/LoggedDropdown'
 
 const TopBar = () => {
+  const isLogged = false
   
   return (
     <nav className={styles.topbar}>
       <Link href="/">
-        <SilicoreLogo />
+        <SilicoreLogo withText={true}/>
       </Link>
       <div className={styles.buttons}>
-        <CountryButton />
-        <LoginButton />
+        <CountryDropdown />
+        {isLogged ? <LoggedDropdown /> : <LoginButton />}
       </div>
     </nav>
   )

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { createContext, useState, useEffect, useCallback } from 'react'
 import i18n from '../i18n'
 
@@ -18,31 +20,32 @@ export const LanguageProvider = ({ children }) => {
   ]
 
   const [selectedCountry, setSelectedCountry] = useState(allCountries[0])
-  const storedCountryId = localStorage.getItem('countryId')
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedCountryId = localStorage.getItem('countryId')
-      const initialCountry = allCountries.find(c => c.id === Number(storedCountryId)) || allCountries[0]
-      setSelectedCountry(initialCountry)
-      i18n.changeLanguage(initialCountry.language).then(() => {
+    setIsClient(true)
+    const storedCountryId = localStorage.getItem('countryId')
+    const initialCountry = allCountries.find(c => c.id === Number(storedCountryId)) || allCountries[0]
+    setSelectedCountry(initialCountry)
+    i18n.changeLanguage(initialCountry.language).then(() => {
+      if (document) {
         document.documentElement.lang = initialCountry.language
-      })
-    }
+      }
+    })
   }, [])
 
   const changeCountry = useCallback((country) => {
     setSelectedCountry(country)
-    if (typeof window !== 'undefined') {
-      i18n.changeLanguage(country.language).then(() => {
+    i18n.changeLanguage(country.language).then(() => {
+      if (document) {
         document.documentElement.lang = country.language
-        localStorage.setItem('countryId', country.id.toString())
-      })
-    }
+      }
+      localStorage.setItem('countryId', country.id.toString())
+    })
   }, [])
 
   return (
-    <LanguageContext.Provider value={{ selectedCountry, changeCountry, allCountries }}>
+    <LanguageContext.Provider value={{ selectedCountry, changeCountry, allCountries, isClient }}>
       {children}
     </LanguageContext.Provider>
   )

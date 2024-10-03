@@ -70,7 +70,7 @@ body{
   width: 100%;
 }
 
-p, h1 {
+p, h1, h2, h3 {
   margin: 0;
 }
 
@@ -81,6 +81,8 @@ a{
 
 ul{
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 svg{

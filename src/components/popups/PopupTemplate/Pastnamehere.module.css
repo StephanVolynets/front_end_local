@@ -1,0 +1,29 @@
+.middle{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.bottom{
+  display: flex;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 15px;
+  background-color: var(--white);
+  border-radius: 0 0 20px 20px;
+}
+
+@media (max-width: 800px) or (max-height: 600px) {
+  .bottom{
+    position: fixed;
+    bottom: 0;
+    border-radius: 0;
+  }
+  
+  .middle{
+    padding: 20px 25px 120px 25px;
+  }
+
+}

@@ -20,6 +20,7 @@ const Dashboard = () => {
             components={[<span className={styles.highlight} key="highlight" />]}
           />
         </h1>
+        <h2 className={styles.subtitle}>{t('homepage subtitle')}</h2>
       </main>
     </>
   )

@@ -16,11 +16,18 @@
   font-family: 'ArchivoBlack';
   font-size: 60px;
   margin-top: 60px;
-  max-width: 656px;
+  max-width: 800px;
   letter-spacing: -2.4px;
   text-align: center;
 }
 
 .highlight {
   color: #FF5733; /* Cambia este valor al color que prefieras */
+}
+
+.subtitle{
+  font-family: 'ArchivoRegular';
+  font-size: 16px;
+  color: var(--secondary);
+  margin-top: 20px;
 }
