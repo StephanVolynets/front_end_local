@@ -1,4 +1,8 @@
 .topbar{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
   background-color: var(--background);
   padding: 20px 30px;
   height: 84px;
@@ -7,6 +11,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.navigation{
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.link{
+  font-size: 16px;
+  color: var(--secondary);
+  font-family: 'ArchivoRegular';
+}
+
+.link:hover{
+  text-decoration: underline;
 }
 
 .buttons{

@@ -1,0 +1,87 @@
+.footer{
+  display: flex;
+  flex-direction: column;
+}
+
+.about{
+  display: flex;
+  padding: 20px;
+  width: 100%;
+  background-color: var(--accent-one);
+  color: var(--background);
+  font-size: 16px;
+  justify-content: center;
+  font-family: 'ArchivoMedium';
+  box-sizing: border-box;
+}
+
+.navigation{
+  display: flex;
+  padding: 20px 30px;
+  justify-content: space-between;
+}
+
+.links{
+  display: flex;
+  gap: 20px;
+}
+
+.link{
+  font-size: 16px;
+  color: var(--secondary);
+  font-family: 'ArchivoRegular';
+}
+
+.link:hover{
+  text-decoration: underline;
+}
+
+.contact{
+  display: flex;
+  gap: 10px;
+}
+
+.contactText{
+  font-family: 'ArchivoMedium';
+  font-size: 16px;
+  color: var(--primary);
+}
+
+.mailto{
+  font-family: 'ArchivoRegular';
+  font-size: 16px;
+  color: var(--secondary);
+}
+
+.mailto:hover{
+  text-decoration: underline;
+}
+
+.silicoreText{
+  width: 100%;
+  height: auto;
+  padding: 40px 30px 0;
+  box-sizing: border-box;
+}
+
+.info{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+.infoText{
+  font-family: 'ArchivoRegular';
+  font-size: 16px;
+  color: var(--secondary);
+}
+
+.highlight{
+  font-family: 'ArchivoMedium';
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.highlight:hover{
+  text-decoration: underline;
+}

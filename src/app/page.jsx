@@ -1,5 +1,6 @@
 'use client'
 
+import Footer from '@/components/footer/Footer'
 import styles from './dashboard.module.css'
 import TopBar from '@/components/topBar/TopBar'
 import { useTranslation, Trans } from 'react-i18next'
@@ -22,6 +23,7 @@ const Dashboard = () => {
         </h1>
         <h2 className={styles.subtitle}>{t('homepage subtitle')}</h2>
       </main>
+      <Footer />
     </>
   )
 }

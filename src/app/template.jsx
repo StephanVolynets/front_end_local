@@ -1,5 +1,7 @@
 'use client'
 
+import styles from './template.module.css'
+
 import '../i18n'
 import { LanguageProvider, LanguageContext } from '@/context/LanguageContext'
 import React, { useContext, useEffect } from 'react'
@@ -8,7 +10,9 @@ export default function Template ({ children }) {
   return (
     <LanguageProvider>
       <HtmlLanguage>
-        {children}
+        <main className={styles.main}>
+          {children}
+        </main>
       </HtmlLanguage>
     </LanguageProvider>
   )
