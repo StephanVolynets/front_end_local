@@ -11,6 +11,8 @@ import CountryDropdown from '@/components/dropdowns/countryDropdown/CountryDropd
 import LoginButton from '@/components/buttons/loginButton/LoginButton'
 import LoggedDropdown from '@/components/dropdowns/loggedDropdown/LoggedDropdown'
 
+import HamburgerIcon from '@/components/icons/hamburgerIcon'
+
 const TopBar = () => {
   const isLogged = false
   const { t } = useTranslation()
@@ -31,6 +33,7 @@ const TopBar = () => {
         <CountryDropdown />
         {isLogged ? <LoggedDropdown /> : <LoginButton />}
       </div>
+      <button className={styles.hamburger}><HamburgerIcon /></button>
     </nav>
   )
 }

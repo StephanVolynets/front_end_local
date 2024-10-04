@@ -93,9 +93,12 @@ const ExchangeDetailsPopup = ({ showPopup, setShowPopup }) => {
           </div>
           <div className={styles.bottom}>
             <div className={styles.socialMedia}>
-              <XIcon />
-              <InstagramIcon />
-              <LinkedinIcon />
+              <p className={styles.hiddenLabel}>Socials</p>
+              <div className={styles.icons}>
+                <a href="https://x.com/"><XIcon /></a>
+                <a href="https://instagram.com/"><InstagramIcon /></a>
+                <a href="https://www.linkedin.com/"><LinkedinIcon /></a>
+              </div>
             </div>
             <div className={styles.buttons}>
               <button onClick={() => setShowRateExchangePopup(true)} className={styles.rateExchange}>{t('rate exchange')}</button>

@@ -34,3 +34,37 @@
   display: flex;
   gap: 10px;
 }
+
+.hamburger{
+  display: none;
+  visibility: hidden;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: scale 0.1s;
+}
+
+.hamburger:hover{
+  scale: 1.2;
+}
+
+@media (max-width: 700px) {
+  .topbar{
+    padding: 20px;
+    height: 80px;
+  }
+  .hamburger{
+    display: flex;
+    visibility: visible;
+  }
+  .buttons{
+    display: none;
+    visibility: none;
+  }
+  .link{
+    display: none;
+  visibility: hidden;
+  }
+  
+}

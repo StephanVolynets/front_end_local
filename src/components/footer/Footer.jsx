@@ -17,12 +17,15 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p className={styles.about}>{t('footer about')}</p>
       <nav className={styles.navigation} aria-label="Footer Navigation">
-        <div className={styles.links}>
-          {pathname !== '/' && <Link className={styles.link} href='/'>{t('home')}</Link>}
-          {pathname !== '/privacy-policy' && <Link className={styles.link} href='/privacy-policy'>{t('privacy policy')}</Link>}
+        <div className={styles.linksContainer}>
+          <p className={styles.label}>{t('links')}</p>
+          <div className={styles.links}>
+            {pathname !== '/' && <Link className={styles.link} href='/'>{t('home')}</Link>}
+            {pathname !== '/privacy-policy' && <Link className={styles.link} href='/privacy-policy'>{t('privacy policy')}</Link>}
+          </div>
         </div>
         <div className={styles.contact}>
-          <p className={styles.contactText}>{t('contact')}</p>
+          <p className={styles.label}>{t('contact')}</p>
           <a className={styles.mailto} href="mailto:brooks@silicore.io">brooks@silicore.io</a>
         </div>
       </nav>

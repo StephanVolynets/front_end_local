@@ -1,3 +1,9 @@
 .stars{
   display: flex;
 }
+
+@media (max-width: 380px) {
+  .stars > *:not(:first-child) {
+    display: none;
+  }
+}

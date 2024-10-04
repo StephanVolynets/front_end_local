@@ -13,12 +13,19 @@
   justify-content: center;
   font-family: 'ArchivoMedium';
   box-sizing: border-box;
+  text-align: center;
 }
 
 .navigation{
   display: flex;
   padding: 20px 30px;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.linksContainer{
+  display: flex;
+  gap: 20px;
 }
 
 .links{
@@ -41,7 +48,7 @@
   gap: 10px;
 }
 
-.contactText{
+.label{
   font-family: 'ArchivoMedium';
   font-size: 16px;
   color: var(--primary);
@@ -84,4 +91,32 @@
 
 .highlight:hover{
   text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .navigation{
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .contact{
+    justify-content: space-between;
+  }
+
+  .linksContainer{
+    justify-content: space-between;
+  }
+
+  .silicoreText{
+    padding: 40px 20px 0;
+  }
+
+  .info{
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+  }
+  
 }

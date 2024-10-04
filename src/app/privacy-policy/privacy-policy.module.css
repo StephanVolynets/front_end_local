@@ -70,3 +70,16 @@
   letter-spacing: -0.96px;
 }
 
+@media (max-width: 600px) {
+  .main{
+    padding: 64px 20px 40px;
+  }
+  .title{
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+  .content, .content2{
+    margin-top: 40px;
+  }
+  
+}
