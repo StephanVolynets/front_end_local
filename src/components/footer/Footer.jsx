@@ -16,7 +16,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <p className={styles.about}>{t('footer about')}</p>
-      <section className={styles.navigation}>
+      <nav className={styles.navigation} aria-label="Footer Navigation">
         <div className={styles.links}>
           {pathname !== '/' && <Link className={styles.link} href='/'>{t('home')}</Link>}
           {pathname !== '/privacy-policy' && <Link className={styles.link} href='/privacy-policy'>{t('privacy policy')}</Link>}
@@ -25,8 +25,8 @@ const Footer = () => {
           <p className={styles.contactText}>{t('contact')}</p>
           <a className={styles.mailto} href="mailto:brooks@silicore.io">brooks@silicore.io</a>
         </div>
-      </section>
-      <SilicoreText className={styles.silicoreText} />
+      </nav>
+      <SilicoreText className={styles.silicoreText} alt="Silicore Logo" />
       <section className={styles.info}>
         <p className={styles.infoText}>{t('copyright')}</p>
         <p className={styles.infoText}>

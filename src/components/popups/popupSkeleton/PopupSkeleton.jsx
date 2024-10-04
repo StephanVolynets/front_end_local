@@ -4,9 +4,8 @@ import styles from './PopupSkeleton.module.css'
 import React, { useEffect, useState } from 'react'
 import CloseIcon from '@/components/icons/closeIcon'
 import ReactDOM from 'react-dom'
-import SilicoreLogo from '@/components/icons/silicoreLogo'
 
-const PopupSkeleton = ({ children, setShowPopup, closePopup, setClosePopup, width }) => {
+const PopupSkeleton = ({ children, setShowPopup, closePopup, setClosePopup, hide, removeBackground, width, logo, title }) => {
   const [reverseAnimation, setReverseAnimation] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
@@ -27,7 +26,7 @@ const PopupSkeleton = ({ children, setShowPopup, closePopup, setClosePopup, widt
       document.body.style.overflow = 'auto'
       window.removeEventListener('popstate', handlePopState)
     }
-  }, [setShowPopup, closePopup, setClosePopup])
+  }, [setShowPopup, closePopup, setClosePopup, hide, removeBackground])
 
   const handleClose = () => {
     setReverseAnimation(true)
@@ -49,10 +48,10 @@ const PopupSkeleton = ({ children, setShowPopup, closePopup, setClosePopup, widt
   return (
     <>
       {isClient && ReactDOM.createPortal(
-        <div className={`${styles.popupBackground} ${reverseAnimation ? styles.disabledBackground : ''}`}>
-          <div className={`${styles.popupBody} ${reverseAnimation ? styles.disabledBody : ''}`} style={{ width: width }}>
+        <div className={`${styles.popupBackground} ${reverseAnimation ? styles.disabledBackground : ''} ${removeBackground ? styles.removeBackground : ''}`}>
+          <div className={`${styles.popupBody} ${reverseAnimation ? styles.disabledBody : ''} ${hide && styles.hideBody}`} style={{ width: width }}>
             <div className={styles.top}>
-              <SilicoreLogo className={styles.logo} />
+              <div className={styles.topLeft}>{logo}{title}</div>
               <button className={styles.closeIconButton} onClick={handleClose}>
                 <CloseIcon className={styles.closeIcon} />
               </button>

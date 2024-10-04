@@ -19,7 +19,7 @@
 .popupBody{
   position: fixed;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   background-color: var(--background);
   display: flex;
   flex-direction: column;
@@ -41,10 +41,31 @@
   }
 }
 
+.removeBackground{
+  background-color: rgba(0, 0, 0, 0.00);
+  animation: none !important;
+}
+
+.hideBody{
+  animation: removeBody 0.2s ease-in-out forwards !important;
+}
+
 .top{
   display: flex;
   padding: 20px;
   justify-content: space-between;
+}
+
+.topLeft{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 20px;
+  font-family: 'ArchivoSemibold';
+}
+
+.topLeft img, .topLeft svg{
+  height: 26px;
 }
 
 .closeIconButton{
@@ -141,6 +162,7 @@
     bottom: 0;
     animation: slideInFromTopMobile 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     scale: 1;
+    width: 100% !important;
   }
 
   .popupContent{

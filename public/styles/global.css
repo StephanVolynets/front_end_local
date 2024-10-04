@@ -41,6 +41,36 @@
   font-weight: 900;
 }
 
+@font-face {
+  font-family: 'AlbertSansRegular';
+  src: url('/fonts/AlbertSans.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'AlbertSansMedium';
+  src: url('/fonts/AlbertSans.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'AlbertSansSemibold';
+  src: url('/fonts/AlbertSans.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'AlbertSansBold';
+  src: url('/fonts/AlbertSans.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'AlbertSansBlack';
+  src: url('/fonts/AlbertSans.ttf') format('truetype');
+  font-weight: 900;
+}
+
 /* Letter spacing for everything, some specific texts may have a little bit more */
 
 html, body, button, input, textarea, select, p {

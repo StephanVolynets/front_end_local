@@ -1,4 +1,7 @@
 {
+  "homepage title": "DESCUBRE LOS MEJORES <0>CRIPTO</0> ANCLAJES",
+  "homepage subtitle": "Compara exchanges confiables, asegúrate de las mejores tasas y comercia fácilmente.",
+
   "login": "Iniciar sesión",
   "login-title": "Comienza ahora",
   "login-subtitle": "Silicore es tu portal para descubrir los mejores anclajes criptográficos. Únete a nuestra red en crecimiento!",
@@ -6,8 +9,6 @@
   "login-features-1": "Compara exchanges criptográficos",
   "login-features-2": "Lee y deja reseñas",
   "login-features-3": "Filtra exchanges fraudulentos",
-  "homepage title": "DESCUBRE LOS MEJORES <0>CRIPTO</0> ANCLAJES",
-  "homepage subtitle": "Compara exchanges confiables, asegúrate de las mejores tasas y comercia fácilmente.",
 
   "footer about": "Empoderando a los traders de cripto con datos e información en tiempo real.",
   "home": "Inicio",
@@ -15,6 +16,27 @@
   "contact": "Contacto",
   "copyright": "© 2024 Silicore. Todos los derechos reservados.",
   "ignacio prados": "Diseñado por <0>ignaprados</0>",
+
+  "founded in": "Fundado en",
+  "monthly users": "usuarios mensuales",
+  "employees": "empleados",
+  "countries": "países",
+  "has": "Tiene",
+  "see reviews": "Ver reseñas",
+  "networks": "Redes",
+  "commission": "Comisión",
+  "buying": "Compra",
+  "selling": "Venta",
+  "payment methods": "Métodos de pago",
+  "rate exchange": "Calificar exchange",
+  "open": "Abrir",
+
+  "payment_methods": {
+    "credit_card": "Tarjeta de Crédito",
+    "debit_card": "Tarjeta de Débito",
+    "bank_transfer": "Transferencia Bancaria",
+    "crypto_wallet": "Billetera Cripto"
+  },
 
   "privacy policy title": "POLÍTICA DE PRIVACIDAD",
   "privacy policy subtitle": "Última actualización el 14 de septiembre de 2024",

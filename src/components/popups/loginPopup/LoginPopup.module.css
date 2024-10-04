@@ -1,3 +1,7 @@
+.logo{
+  height: 41px !important;
+}
+
 .middle{
   display: flex;
   flex-direction: column;

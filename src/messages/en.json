@@ -1,4 +1,7 @@
 {
+  "homepage title": "DISCOVER THE BEST <0>CRYPTO</0> ANCHORS",
+  "homepage subtitle": "Compare trusted exchanges, secure the best rates, and trade with ease.",
+
   "login": "Login",
   "login-title": "Get started",
   "login-subtitle": "Silicore is your gateway to discovering the best crypto anchors. Join our growing network!",
@@ -6,8 +9,6 @@
   "login-features-1": "Compare top crypto exchanges",
   "login-features-2": "Leave and read reviews",
   "login-features-3": "Filter scam exchanges",
-  "homepage title": "DISCOVER THE BEST <0>CRYPTO</0> ANCHORS",
-  "homepage subtitle": "Compare trusted exchanges, secure the best rates, and trade with ease.",
 
   "footer about": "Empowering crypto traders with real-time data and insights.",
   "home": "Home",
@@ -15,6 +16,27 @@
   "contact": "Contact",
   "copyright": "© 2024 Silicore. All rights reserved.",
   "ignacio prados": "Designed by <0>ignaprados</0>",
+
+  "founded in": "Founded in",
+  "monthly users": "monthly users",
+  "employees": "employees",
+  "countries": "countries",
+  "has": "Has",
+  "see reviews": "See reviews",
+  "networks": "Networks",
+  "commission": "Commission",
+  "buying": "Buying",
+  "selling": "Selling",
+  "payment methods": "Payment methods",
+  "rate exchange": "Rate exchange",
+  "open": "Open",
+
+  "payment_methods": {
+    "credit_card": "Credit Card",
+    "debit_card": "Debit Card",
+    "bank_transfer": "Bank Transfer",
+    "crypto_wallet": "Crypto Wallet"
+  },
 
   "privacy policy title": "PRIVACY POLICY",
   "privacy policy subtitle": "Last updated September 14, 2024",

@@ -1,0 +1,36 @@
+.slider {
+  display: flex;
+  overflow-x: auto;
+  cursor: grab;
+  user-select: none;
+  gap: 10px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari & Opera */
+}
+
+.slider.grabbing {
+  cursor: grabbing;
+}
+
+.element{
+  display: flex;
+  padding: 10px 15px;
+  border-radius: 500px;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  text-wrap: nowrap;
+  font-size: 16px;
+  font-family: 'ArchivoRegular';
+  color: var(--secondary);
+}
+
+.shadow{
+  width: 50px;
+  height: 37px;
+  right: 0;
+  position: absolute;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 1) 60%);
+}

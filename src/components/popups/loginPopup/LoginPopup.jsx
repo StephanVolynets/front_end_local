@@ -9,12 +9,13 @@ import AwardIcon from '@/components/icons/awardIcon'
 import ReviewIcon from '@/components/icons/reviewIcon'
 import ShieldIcon from '@/components/icons/shieldIcon'
 import GoogleButton from '@/components/buttons/googleButton/GoogleButton'
+import SilicoreLogo from '@/components/icons/silicoreLogo'
 
 const LoginPopup = ({ showPopup, setShowPopup }) => {
   const { t } = useTranslation()
   if (showPopup) {
     return (
-      <PopupSkeleton setShowPopup={setShowPopup} width={365}>
+      <PopupSkeleton setShowPopup={setShowPopup} width={365} logo={<SilicoreLogo className={styles.logo}/>}>
         <div className={styles.middle}>
           <h2 className={styles.title}>{t('login-title')}</h2>
           <p className={styles.subtitle}>{t('login-subtitle')}</p>
