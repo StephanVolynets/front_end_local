@@ -32,6 +32,12 @@
   "rate exchange": "Rate exchange",
   "open": "Open",
 
+  "share your experience with this exchange and help others.": "Share your experience with this exchange and help others.",
+  "send review": "Send review",
+  "edit review": "Edit review",
+  "save": "Save",
+  "delete": "Delete",
+
   "payment_methods": {
     "credit_card": "Credit Card",
     "debit_card": "Debit Card",
@@ -42,6 +48,8 @@
   "most recent": "Most recent",
   "highest rating": "Highest rating",
   "lowest rating": "Lowest rating",
+  "review": "Review",
+  "by submitting your review, you agree to our Privacy Policy.": "By submitting your review, you agree to our <0>Privacy Policy</0>.",
 
   "month_one": "month",
   "month_other": "months",

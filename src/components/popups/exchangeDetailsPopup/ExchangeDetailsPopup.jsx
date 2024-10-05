@@ -18,97 +18,90 @@ import CalendarIcon from '@/components/icons/calendarIcon'
 import XIcon from '@/components/icons/xIcon'
 import InstagramIcon from '@/components/icons/instagramIcon'
 import LinkedinIcon from '@/components/icons/linkedinIcon'
-import ExchangeReviewsPopup from '../exchangeReviewsPopup/ExchangeReviewsPopup'
-import RateExchangePopup from '../rateExchangePopup/RateExchangePopup'
+import ExchangeReviewsPopup from '@/components/popups/exchangeReviewsPopup/ExchangeReviewsPopup'
+import RateExchangePopup from '@/components/popups/rateExchangePopup/RateExchangePopup'
 
-
-
-const ExchangeDetailsPopup = ({ showPopup, setShowPopup }) => {
+const ExchangeDetailsPopup = ({ showPopup, setShowPopup, exchangeData }) => {
   const { t } = useTranslation()
 
   const [showReviewsPopup, setShowReviewsPopup] = useState(false)
   const [showRateExchangePopup, setShowRateExchangePopup] = useState(false)
 
-  const exchange = 'Binance'
 
-  const foundedIn = '2017'
-  const place = 'Cayman Islands'
-  const employees = '12,000'
-  const kyc = 'KYC'
-  const users = '128M+'
-  const countries = '140+'
-
-  const reviewAverage = 4.4
-  const reviewCounter = 320
-
-  const networks = ['Polygon (MATIC)', 'Ethereum (ETH)', 'Binance (BSC)', 'Avalanche (AVAX)', 'Solana (SOL)', 'Cardano (ADA)', 'Polkadot (DOT)', 'Chainlink (LINK)']
-
-  const paymentMethods = ["credit_card", "debit_card", "bank_transfer", "crypto_wallet"] // this is also being translated (see en.json && es.json)
 
   if (showPopup) {
     return (
       <PopupSkeleton 
         setShowPopup={setShowPopup}
-        logo={<img src='/img/binance-logo-example.png'></img>}
-        title={exchange}
+        logo={exchangeData.logo}
+        title={exchangeData.name}
         hide={showReviewsPopup || showRateExchangePopup}
       >
         <>
           <div className={styles.middle}>
             <div className={styles.info}>
-              {foundedIn && <p className={styles.infoValue}><CalendarIcon aria-hidden="true" />{t('founded in')} {foundedIn}</p>}
-              {place && <p className={styles.infoValue}><PointerIcon aria-hidden="true" />{place}</p>}
-              {users && <p className={styles.infoValue}><UsersIcon aria-hidden="true" />{users} {t('monthly users')}</p>}
-              {employees && <p className={styles.infoValue}><BuildingIcon aria-hidden="true" />{employees} {t('employees')}</p>}
-              {countries && <p className={styles.infoValue}><WorldIcon aria-hidden="true" />{countries} {t('countries')}</p>}
-              {kyc && <p className={styles.infoValue}><FingerprintIcon aria-hidden="true" />{t('has')} {kyc}</p>}
+              {exchangeData.foundedIn && <p className={styles.infoValue}><CalendarIcon aria-hidden="true" />{t('founded in')} {exchangeData.foundedIn}</p>}
+              {exchangeData.place && <p className={styles.infoValue}><PointerIcon aria-hidden="true" />{exchangeData.place}</p>}
+              {exchangeData.users && <p className={styles.infoValue}><UsersIcon aria-hidden="true" />{exchangeData.users} {t('monthly users')}</p>}
+              {exchangeData.employees && <p className={styles.infoValue}><BuildingIcon aria-hidden="true" />{exchangeData.employees} {t('employees')}</p>}
+              {exchangeData.countries && <p className={styles.infoValue}><WorldIcon aria-hidden="true" />{exchangeData.countries} {t('countries')}</p>}
+              {exchangeData.kyc && <p className={styles.infoValue}><FingerprintIcon aria-hidden="true" />{t('has')} {exchangeData.kyc}</p>}
             </div>
             <div className={styles.reviewsContainer}>
               <div className={styles.reviews}>
-                <p className={styles.reviewsAverage}>{reviewAverage}</p>
-                <StarsViewer reviewAverage={reviewAverage} />
-                <p className={styles.reviewsCounter}>({reviewCounter})</p>
+                <p className={styles.reviewsAverage}>{exchangeData.reviewAverage}</p>
+                <StarsViewer reviewAverage={exchangeData.reviewAverage} />
+                <p className={styles.reviewsCounter}>({exchangeData.reviewCounter})</p>
               </div>
               <button onClick={() => setShowReviewsPopup(true)} className={styles.reviewsButton}>{t('see reviews')}</button>
             </div>
             <div className={styles.sliderContainer}>
               <p className={styles.label}>{t('networks')}</p>
-              <Slider elements={networks} />
+              <Slider elements={exchangeData.networks} />
             </div>
             <div className={styles.comission}>
               <p className={styles.label}>{t('commission')}</p>
               <div className={styles.comissionValues}>
                 <p className={styles.comissionValue}>
-                  <span className={styles.comissionValueHighlight}>0.1%</span> {t('buying')}
+                  <span className={styles.comissionValueHighlight}>{exchangeData.commission.buying}</span> {t('buying')}
                 </p>
                 <p className={styles.comissionValue}>
-                  <span className={styles.comissionValueHighlight}>0.1%</span> {t('selling')}
+                  <span className={styles.comissionValueHighlight}>{exchangeData.commission.selling}</span> {t('selling')}
                 </p>
               </div>
             </div>
             <div className={styles.sliderContainer} style={{ paddingBottom: '0' }}>
               <p className={styles.label}>{t('payment methods')}</p>
-              <Slider elements={paymentMethods.map(paymentMethod => t(`payment_methods.${paymentMethod}`))} />
+              <Slider elements={exchangeData.paymentMethods.map(paymentMethod => t(`payment_methods.${paymentMethod}`))} />
             </div>
           </div>
           <div className={styles.bottom}>
             <div className={styles.socialMedia}>
               <p className={styles.hiddenLabel}>Socials</p>
               <div className={styles.icons}>
-                <a href="https://x.com/"><XIcon /></a>
-                <a href="https://instagram.com/"><InstagramIcon /></a>
-                <a href="https://www.linkedin.com/"><LinkedinIcon /></a>
+                <a href={exchangeData.xUrl}><XIcon /></a>
+                <a href={exchangeData.instagramUrl}><InstagramIcon /></a>
+                <a href={exchangeData.linkedinUrl}><LinkedinIcon /></a>
               </div>
             </div>
             <div className={styles.buttons}>
               <button onClick={() => setShowRateExchangePopup(true)} className={styles.rateExchange}>{t('rate exchange')}</button>
               <a href={'https://binance.com'} target="_blank" rel="noopener noreferrer" className={styles.openExchange}>
-                {t('open')} {exchange}
+                {t('open')} {exchangeData.name}
               </a>
             </div>
           </div>
-          <ExchangeReviewsPopup showPopup={showReviewsPopup} setShowPopup={setShowReviewsPopup} />
-          <RateExchangePopup showPopup={showRateExchangePopup} setShowPopup={setShowRateExchangePopup}/>
+          <ExchangeReviewsPopup 
+            showPopup={showReviewsPopup} 
+            setShowPopup={setShowReviewsPopup} 
+            exchange={exchangeData}
+          />
+          <RateExchangePopup 
+            showPopup={showRateExchangePopup} 
+            setShowPopup={setShowRateExchangePopup}
+            logo={exchangeData.logo}
+            exchange={exchangeData.name}
+          />
         </>
       </PopupSkeleton>
     )

@@ -65,6 +65,11 @@
   justify-content: space-between;
 }
 
+.buttons{
+  display: flex;
+  gap: 10px;
+}
+
 .button{
   background-color: var(--border);
   color: var(--tertiary);
@@ -75,6 +80,7 @@
   border-radius: 10px;
   padding: 10px 15px;
   transition: all 0.1s;
+  width: 100px;
 }
 
 .button.active{
@@ -89,6 +95,25 @@
   color: var(--primary);
 }
 
+.buttonDelete{
+  background-color: var(--background);
+  color: var(--red);
+  font-family: 'ArchivoMedium';
+  font-size: 16px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 10px 15px;
+  transition: all 0.1s;
+  cursor: pointer;
+  width: 100px;
+}
+
+.buttonDelete:hover{
+  background-color: var(--red);
+  color: var(--background);
+}
+
 .hiddenText{
   font-size: 16px;
   font-family: 'ArchivoMedium';
@@ -96,9 +121,11 @@
   display: none;
   visibility: hidden;
 }
+
 .exchange{
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 
 .exchangeLogo{
@@ -113,7 +140,7 @@
 
 @media (max-width: 800px) or (max-height: 600px) {    
   .middle{
-    padding: 0 25px 137.6px 25px;
+    padding: 0 25px 186.8px 25px;
   }
 
   .bottom{
@@ -130,7 +157,12 @@
     align-items: center;
   }
 
-  .button{
+  .buttons{
+    width: 100%;
+    flex-flow: column-reverse;
+  }
+
+  .button, .buttonDelete{
     width: 100%;
   }
 

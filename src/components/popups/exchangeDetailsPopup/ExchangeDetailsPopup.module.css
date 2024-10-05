@@ -190,12 +190,9 @@
   }
   
   .middle{
-    padding: 0 25px 120px 25px;
+    padding: 0 25px 187px 25px;
   }
 
-}
-
-@media (max-width: 430px) {
   .bottom{
     flex-direction: column;
   }
@@ -217,7 +214,7 @@
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 400px) {
   .comission{
     flex-direction: column;
     gap: 20px;

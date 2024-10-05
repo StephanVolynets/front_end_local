@@ -15,6 +15,28 @@ const Dashboard = () => {
 
   const [showPopup, setShowPopup] = useState(false)
 
+  const exchangeData = { // assuming the structure of the exchange...
+    name: 'Binance',
+    logo: '/img/binance-logo-example.png',
+    foundedIn: '2017',
+    place: 'Cayman Islands',
+    employees: '12,000',
+    kyc: 'KYC',
+    users: '128M+',
+    countries: '140+',
+    xUrl: 'https://x.com/binance',
+    instagramUrl: 'https://instagram.com/binance',
+    linkedinUrl: 'https://linkedin.com/binance',
+    reviewAverage: 4.4,
+    reviewCounter: 320,
+    networks: ['Polygon (MATIC)', 'Ethereum (ETH)', 'Binance (BSC)', 'Avalanche (AVAX)', 'Solana (SOL)', 'Cardano (ADA)', 'Polkadot (DOT)', 'Chainlink (LINK)'],
+    paymentMethods: ["credit_card", "debit_card", "bank_transfer", "crypto_wallet"],
+    commission: {
+      buying: '0.1%',
+      selling: '0.1%'
+    }
+  }
+
   return (
     <>
       <TopBar />
@@ -30,7 +52,7 @@ const Dashboard = () => {
       </main>
       <button onClick={() => setShowPopup(!showPopup)}>Exchange Details Popup</button>
 
-      <ExchangeDetailsPopup showPopup={showPopup} setShowPopup={setShowPopup}/>
+      <ExchangeDetailsPopup showPopup={showPopup} setShowPopup={setShowPopup} exchangeData={exchangeData}/>
 
       <Footer />
     </>

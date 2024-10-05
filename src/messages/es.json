@@ -32,6 +32,12 @@
   "rate exchange": "Calificar exchange",
   "open": "Abrir",
 
+  "share your experience with this exchange and help others.": "Comparte tu experiencia con este exchange y ayuda a otros.",
+  "send review": "Enviar reseña",
+  "edit review": "Editar reseña",
+  "save": "Guardar",
+  "delete": "Eliminar",
+
   "payment_methods": {
     "credit_card": "Tarjeta de Crédito",
     "debit_card": "Tarjeta de Débito",
@@ -42,6 +48,8 @@
   "most recent": "Más reciente",
   "highest rating": "Calificación más alta",
   "lowest rating": "Calificación más baja",
+  "review": "Reseña",
+  "by submitting your review, you agree to our Privacy Policy.": "Al enviar tu reseña, aceptas nuestra <0>Política de privacidad</0>.",
 
   "month_one": "mes",
   "month_other": "meses",
