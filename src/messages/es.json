@@ -39,6 +39,19 @@
     "crypto_wallet": "Billetera Cripto"
   },
 
+  "most recent": "Más reciente",
+  "highest rating": "Calificación más alta",
+  "lowest rating": "Calificación más baja",
+
+  "month_one": "mes",
+  "month_other": "meses",
+  "week_one": "semana",
+  "week_other": "semanas",
+  "year_one": "año",
+  "year_other": "años",
+  "ago": "atrás",
+  "by": "por",
+
   "privacy policy title": "POLÍTICA DE PRIVACIDAD",
   "privacy policy subtitle": "Última actualización el 14 de septiembre de 2024",
   "privacy policy paragraph one": "Este Aviso de Privacidad para Silicore LLC (operando como Silicore) (\"<0>nosotros</0>\", \"<0>nos</0>\" o \"<0>nuestro</0>\"), describe cómo y por qué podríamos acceder, recopilar, almacenar, usar y/o compartir (\"<0>procesar</0>\") tu información personal cuando usas nuestros servicios (\"<0>Servicios</0>\"), incluyendo cuando:",

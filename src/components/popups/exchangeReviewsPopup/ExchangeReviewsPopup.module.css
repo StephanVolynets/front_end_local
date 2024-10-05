@@ -1,29 +1,89 @@
 .middle{
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
+  max-height: 460px;
+  overflow: auto;
+  position: relative;
+}
+
+.reviewsContainer{
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  background-color: var(--background);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.reviews{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewsAverage{
+  font-size: 20px;
+  font-family: 'AlbertSansBold';
+  color: var(--primary);
+}
+
+.reviewsCounter{
+  font-size: 16px;
+  font-family: 'AlbertSansSemiBold';
+  color: var(--primary);
 }
 
 .bottom{
   display: flex;
   width: 100%;
   border-top: 1px solid var(--border);
-  padding: 20px;
+  padding: 15px 20px;
   box-sizing: border-box;
   gap: 15px;
-  background-color: var(--white);
+  background-color: var(--background);
   border-radius: 0 0 20px 20px;
 }
 
+.button{
+  padding: 11.6px 15px;
+  background-color: var(--primary);
+  color: var(--background);
+  font-size: 16px;
+  font-family: 'ArchivoMedium';
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.1s;
+  margin-left: auto;
+}
+
+.button:hover{
+  background-color: var(--background);
+  color: var(--primary);
+}
+
 @media (max-width: 800px) or (max-height: 600px) {
+  .middle{
+    padding: 0 25px 100px 25px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  
   .bottom{
     position: fixed;
     bottom: 0;
     border-radius: 0;
   }
-  
-  .middle{
-    padding: 20px 25px 120px 25px;
-  }
 
+  .button{
+    width: 100%;
+  }
+  
 }

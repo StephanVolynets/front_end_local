@@ -4,7 +4,7 @@ import styles from './StarsViewer.module.css'
 
 import StarIcon from '@/components/icons/starIcon'
 
-const StarsViewer = ({ reviewAverage }) => {
+const StarsViewer = ({ reviewAverage, className }) => {
 
   const renderStars = () => {
     const stars = []
@@ -24,7 +24,7 @@ const StarsViewer = ({ reviewAverage }) => {
   }
 
   return (
-    <div className={styles.stars}>{renderStars()}</div>
+    <div className={`${styles.stars} ${className}` }>{renderStars()}</div>
   )
 }
 

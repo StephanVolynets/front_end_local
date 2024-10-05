@@ -1,0 +1,91 @@
+.card{
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  gap: 15px;
+
+}
+
+.card:not(:first-child){
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.top{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.rating{
+  font-size: 16px;
+  font-family: 'ArchivoMedium';
+  color: var(--primary);
+}
+
+.stars svg{
+  width: 18px;
+  height: 18px;
+}
+
+.time{
+  font-size: 14px;
+  font-family: 'ArchivoMedium';
+  color: var(--tertiary);
+}
+
+.editButton, .editButtonHidden{
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  font-size: 14px;
+  font-family: 'ArchivoSemiBold';
+  color: var(--primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.editButtonHidden{
+  display: none;
+  visibility: hidden;
+}
+
+.user, .userHidden{
+  font-size: 14px;
+  font-family: 'ArchivoMedium';
+  color: var(--accent-one);
+}
+
+.userHidden{
+  display: none;
+  visibility: hidden;
+}
+
+.text{
+  font-size: 16px;
+  font-family: 'ArchivoRegular';
+  color: var(--secondary);
+}
+
+@media (max-width: 800px) or (max-height: 600px) {
+  .editButton{
+    display: none;
+    visibility: hidden;
+  }
+
+  .editButtonHidden{
+    display: flex;
+    visibility: visible;
+  }
+
+  .user{
+    display: none;
+    visibility: hidden;
+  }
+
+  .userHidden{
+    display: flex;
+    visibility: visible;
+  }
+  
+}

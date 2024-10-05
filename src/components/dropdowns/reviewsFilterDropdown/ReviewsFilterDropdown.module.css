@@ -1,0 +1,118 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.dropButton {
+  box-sizing: border-box;
+  display: flex;
+  background-color: var(--background);
+  font-family:'ArchivoMedium';
+  font-size: 16px;
+  color: var(--primary);
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  min-width: 157px;
+  justify-content: end;
+  padding: 0;
+  white-space: nowrap;
+  transition: all 0.1s ease-in-out;
+}
+
+.simpleArrowIcon{
+  transition: all 0.1s ease-in-out;
+}
+
+.dropButtonOpen{
+  .simpleArrowIcon{
+    transform: rotate(180deg);
+  }
+}
+
+.dropButton:hover{
+  text-decoration: underline;
+}
+
+.dropdownContent {
+  display: block;
+  position: absolute;
+  background-color: var(--background);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02);
+  z-index: 1000;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin: 10px 0 0 0;
+  animation: dropdownAppearing 0.15s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+  right: 0;
+  padding: 0;
+}
+
+@keyframes dropdownAppearing {
+  0% {
+    transform: translateY(-2%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.dropdownContent.disabledDropdownContent{
+  animation: dropdownDisappearing 0.15s ease-in-out forwards;
+}
+
+@keyframes dropdownDisappearing {
+  0% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-2%);
+    opacity: 0;
+  }
+}
+
+.dropdownSelectContainer{
+  width: 100%;
+}
+
+.dropdownSelect{
+  color: var(--secondary);
+  background-color: transparent;
+  border: none;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  font-family: 'ArchivoRegular';
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  align-items: center;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  box-sizing: border-box;
+}
+
+.dropdownSelect:hover {
+  background-color: var(--border);
+}
+
+.dropdownSelect:first-child:hover{
+  border-radius: 10px 10px 0 0;
+}
+
+.dropdownSelectContainer:not(:first-child) .dropdownSelect {
+  border-top: 1px solid var(--border);
+}
+
+.dropdownSelectContainer:last-child .dropdownSelect {
+  border-radius: 0 0 10px 10px;
+}

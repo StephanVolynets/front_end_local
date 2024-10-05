@@ -32,6 +32,10 @@
   color: var(--secondary);
 }
 
+.slider:last-child{
+  padding-right: 25px;
+}
+
 .shadow{
   width: 50px;
   height: 37px;
