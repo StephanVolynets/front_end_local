@@ -1,47 +1,39 @@
 'use client'
 
-import styles from './FiatFilterDropdown.module.css'
+import styles from './CountryFilterDropdown.module.css'
 
 import { useTranslation } from 'react-i18next'
 import React, { useState, useEffect, useRef } from 'react'
 
 import SimpleArrowIcon from '@/components/icons/simpleArrowIcon'
 
-const FiatFilterDropdown = ({ selectedFiat, setSelectedFiat }) => {
+const CountryFilterDropdown = ({ selectedCountry, setSelectedCountry }) => {
   const { t } = useTranslation()
 
   const [reverseAnimation, setReverseAnimation] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
 
-  const currencies = [
-    { id: 1, code: 'USD' },
-    { id: 2, code: 'EUR' },
-    { id: 3, code: 'ARS' },
-    { id: 4, code: 'GBP' },
-    { id: 5, code: 'JPY' },
-    { id: 6, code: 'CAD' },
-    { id: 7, code: 'AUD' },
-    { id: 8, code: 'CHF' },
-    { id: 9, code: 'CNY' },
-    { id: 10, code: 'MXN' },
+  const countries = [
+    { id: 1, code: 'United States' },
+    { id: 2, code: 'Argentina' },
+    { id: 3, code: 'Mexico' },
+    { id: 4, code: 'Spain' },
   ]
-  const [selectedCurrencyLocal, setSelectedCurrencyLocal] = useState(
-    currencies.find(c => c.id === selectedFiat) || currencies[0]
+  const [selectedCountryLocal, setSelectedCountryLocal] = useState(
+    countries.find(c => c.id === selectedCountry) || countries[0]
   )
   const [searchTerm, setSearchTerm] = useState('')
 
-  const availableCurrencies = selectedCurrencyLocal
-    ? currencies.filter(c => c.id !== selectedCurrencyLocal.id)
-    : currencies
+  const availableCountries = countries.filter(c => c.id !== selectedCountryLocal.id)
 
-  const filteredCurrencies = availableCurrencies.filter(currency =>
-    currency.code.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCountries = availableCountries.filter(country =>
+    country.code.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  const handleOptionClick = (currency) => {
-    setSelectedCurrencyLocal(currency)
-    setSelectedFiat(currency.id)
+  const handleOptionClick = (country) => {
+    setSelectedCountryLocal(country)
+    setSelectedCountry(country.id)
     setReverseAnimation(true)
     setTimeout(() => {
       setReverseAnimation(false)
@@ -74,7 +66,7 @@ const FiatFilterDropdown = ({ selectedFiat, setSelectedFiat }) => {
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className={styles.currencyCode}>{selectedCurrencyLocal.code}</span>
+        <span className={styles.countryCode}>{selectedCountryLocal.code}</span>
         <SimpleArrowIcon className={`${styles.arrowIcon} ${isOpen ? styles.arrowIconOpen : ''}`} />
       </button>
       {isOpen && (
@@ -82,20 +74,20 @@ const FiatFilterDropdown = ({ selectedFiat, setSelectedFiat }) => {
           <li className={styles.searchContainer}>
             <input
               type="text"
-              placeholder={t('search fiat currency')}
+              placeholder={t('search by country')}
               value={searchTerm}
               onChange={handleSearchChange}
               className={styles.searchInput}
             />
           </li>
-          {filteredCurrencies.map((currency) => (
-            <li key={currency.id} role="option" className={styles.dropdownSelectContainer} aria-selected={selectedCurrencyLocal.id === currency.id}>
+          {filteredCountries.map((country) => (
+            <li key={country.id} role="option" className={styles.dropdownSelectContainer} aria-selected={selectedCountryLocal.id === country.id}>
               <button
                 className={styles.dropdownSelect}
-                onClick={() => handleOptionClick(currency)}
+                onClick={() => handleOptionClick(country)}
                 disabled={reverseAnimation}
               >
-                <span className={styles.currencyCode}>{currency.code}</span>
+                <span className={styles.countryCode}>{country.code}</span>
               </button>
             </li>
           ))}
@@ -105,4 +97,4 @@ const FiatFilterDropdown = ({ selectedFiat, setSelectedFiat }) => {
   )
 }
 
-export default FiatFilterDropdown
+export default CountryFilterDropdown

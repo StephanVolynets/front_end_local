@@ -1,0 +1,66 @@
+.button{
+  background-color: var(--background);
+  color: var(--primary);
+  font-family: 'ArchivoMedium';
+  font-size: 16px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: all 0.1s;
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 calc(50% - 10px);
+  max-width: 275px;
+}
+
+.button:hover{
+  background-color: var(--border);
+  .circleCheckIcon{
+    scale: 1.2;
+  }
+}
+
+.circleCheckIcon{
+  scale: 0.9;
+  transition: all 0.1s;
+  animation: check 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes check {
+  0% {
+    transform: rotate(-270deg);
+    scale: 0.9;
+  }
+  100% {
+    transform: rotate(0);
+    scale: 1;
+  }
+}
+
+.crypto{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.logo{
+  width: 24px;
+  height: 24px;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 800px) or (max-height: 600px) {
+  .button{
+    flex: 1 1 calc(100% - 10px);
+    max-width: none;
+  }
+}

@@ -1,0 +1,40 @@
+.selector{
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.label{
+  font-family: 'ArchivoMedium';
+  font-size: 16px;
+  color: var(--primary);
+}
+
+.exchanges{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.exchangeCapsule{
+  padding: 10px 15px;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 500px;
+  font-family: 'ArchivoRegular';
+  font-size: 16px;
+  color: var(--secondary);
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.exchangeCapsule:hover{
+  background-color: var(--input);
+  border: 1px solid var(--input);
+}
+
+.selected{
+  background-color: var(--input);
+  border: 1px solid var(--input);
+  color: var(--tertiary);
+}

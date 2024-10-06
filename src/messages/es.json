@@ -63,9 +63,15 @@
   "logout": "Cerrar sesión",
   "log out": "Cerrar sesión",
 
+  "main cryptos": "Criptos principales",
   "search cryptocurrency": "Buscar criptomoneda",
   "search fiat currency": "Buscar divisa",
-  "filter": "Filtro",
+  "filter": "Filtrar",
+  "filters": "Filtros",
+  "search by country": "Buscar por país",
+  "search by state": "Buscar por estado",
+
+  "you can choose up to 3 cryptos.": "Puedes elegir hasta 3 criptomonedas.",
 
   "privacy policy title": "POLÍTICA DE PRIVACIDAD",
   "privacy policy subtitle": "Última actualización el 14 de septiembre de 2024",

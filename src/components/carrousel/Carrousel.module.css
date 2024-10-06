@@ -7,6 +7,16 @@
   border-radius: 10px;
 }
 
+.invertBanner{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.invertDots{
+  margin-bottom: 20px;
+  margin-top: 50px !important;
+}
+
 .adCarouselContainer {
   height: 118px;
   overflow: hidden;

@@ -16,11 +16,16 @@ import CryptoFilterDropdown from '@/components/dropdowns/cryptoFilterDropdown/Cr
 import FiatFilterDropdown from '@/components/dropdowns/fiatFilterDropdown/FiatFilterDropdown'
 import DollarIcon from '@/components/icons/dollarIcon'
 import FilterIcon from '@/components/icons/filterIcon'
+import MainCryptosPopup from '@/components/popups/mainCryptosPopup/MainCryptosPopup'
+import FiltersPopup from '@/components/popups/filtersPopup/FiltersPopup'
 
 const Dashboard = () => {
   const { t } = useTranslation()
 
-  const [showPopup, setShowPopup] = useState(false)
+  const [showExchangeDetailsPopup, setShowExchangeDetailsPopup] = useState(false)
+  const [showMainCryptosPopup, setShowMainCryptosPopup] = useState(false)
+  const [showFiltersPopup, setShowFiltersPopup] = useState(false)
+
   const [selectedCrypto, setSelectedCrypto] = useState(1)
   const [selectedFiat, setSelectedFiat] = useState(1)
   const [amount, setAmount] = useState('')
@@ -98,7 +103,7 @@ const Dashboard = () => {
           {cryptos.map((crypto, index) => (
             <CryptoCard key={index} crypto={crypto} />
           ))}
-          <button className={styles.addCardButton}>
+          <button onClick={() => setShowMainCryptosPopup(true)} className={styles.addCardButton}>
             <PlusIcon />
           </button>
         </div>
@@ -122,13 +127,20 @@ const Dashboard = () => {
               onChange={handleAmountChange}
             />
           </div>
-          <button className={styles.filterButton}>{t('filter')} <FilterIcon/></button>
+          <button 
+            className={styles.filterButton}
+            onClick={() => setShowFiltersPopup(true)}
+          >
+            {t('filter')} <FilterIcon/>
+          </button>
         </div>
-        <Carrousel />
+        <Carrousel invertDots={true}/>
       </main>
-      <button onClick={() => setShowPopup(!showPopup)}>Exchange Details Popup</button>
+      <button onClick={() => setShowExchangeDetailsPopup(!showExchangeDetailsPopup)}>Exchange Details Popup</button>
 
-      <ExchangeDetailsPopup showPopup={showPopup} setShowPopup={setShowPopup} exchangeData={exchangesData[0]}/>
+      <MainCryptosPopup showPopup={showMainCryptosPopup} setShowPopup={setShowMainCryptosPopup} />
+      <FiltersPopup showPopup={showFiltersPopup} setShowPopup={setShowFiltersPopup} />
+      <ExchangeDetailsPopup showPopup={showExchangeDetailsPopup} setShowPopup={setShowExchangeDetailsPopup} exchangeData={exchangesData}/>
       <Footer />
     </>
   )

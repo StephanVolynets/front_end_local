@@ -27,8 +27,6 @@ const ExchangeDetailsPopup = ({ showPopup, setShowPopup, exchangeData }) => {
   const [showReviewsPopup, setShowReviewsPopup] = useState(false)
   const [showRateExchangePopup, setShowRateExchangePopup] = useState(false)
 
-
-
   if (showPopup) {
     return (
       <PopupSkeleton 

@@ -5,7 +5,7 @@ import styles from './Carrousel.module.css'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Carrousel = () => {
+const Carrousel = ({ invertDots }) => {
   const { t } = useTranslation()
 
   const [currentAdIndex, setCurrentAdIndex] = useState(0)
@@ -41,7 +41,7 @@ const Carrousel = () => {
   }
 
   return (
-    <aside className={styles.adBanner}>
+    <aside className={`${styles.adBanner} ${invertDots && styles.invertBanner}`}>
       <div className={styles.adCarouselContainer}>
         <div
           className={styles.adCarousel}
@@ -59,7 +59,7 @@ const Carrousel = () => {
           ))}
         </div>
       </div>
-      <div className={styles.adDots}>
+      <div className={`${styles.adDots} ${invertDots && styles.invertDots}`}>
         {ads.map((_, index) => (
           <span
             key={index}
