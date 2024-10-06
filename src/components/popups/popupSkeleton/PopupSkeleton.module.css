@@ -70,12 +70,17 @@
 
 .closeIconButton{
   padding: 0;
-  height: 12px;
   display: flex;
   border: 0;
   background-color: transparent;
   transition: scale 0.1s ease-in-out;
 }
+
+.closeIconButton svg{
+  width: 24px;
+  height: 24px;
+}
+
 .closeIconButton:hover{
   scale: 1.2;
 }

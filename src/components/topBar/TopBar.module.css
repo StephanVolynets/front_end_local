@@ -35,6 +35,21 @@
   gap: 10px;
 }
 
+.mobileButtons{
+  display: none;
+  visibility: hidden;
+  position: absolute;
+  background-color: var(--background);
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  top: 80px;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
 .hamburger{
   display: none;
   visibility: hidden;
@@ -45,11 +60,46 @@
   transition: scale 0.1s;
 }
 
+.hamburger svg{
+  width: 30px;
+  height: 30px;
+}
+
 .hamburger:hover{
   scale: 1.2;
 }
 
-@media (max-width: 700px) {
+@keyframes mobileButtonsAppearing {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mobileButtonsDisappearing {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .mobileButtons{
+    display: flex;
+    visibility: visible;
+    animation: mobileButtonsAppearing 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .mobileButtons.closing {
+    animation: mobileButtonsDisappearing 0.2s cubic-bezier(0.925, 0.18, 0.835, 1) forwards;
+  }
   .topbar{
     padding: 20px;
     height: 80px;
@@ -64,7 +114,7 @@
   }
   .link{
     display: none;
-  visibility: hidden;
+    visibility: hidden;
   }
   
 }

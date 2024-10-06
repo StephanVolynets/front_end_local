@@ -3,18 +3,36 @@
 import styles from './LoggedDropdown.module.css'
 
 import React, { useState, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import UserIcon from '@/components/icons/userIcon'
 import LogoutIcon from '@/components/icons/logoutIcon'
 
 const LoggedDropdown = () => {
+  const { t } = useTranslation()
+
   const [isOpen, setIsOpen] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
   const dropdownRef = useRef(null)
+
+  const username = 'Ignacio Prados'
+
+  const handleToggle = () => {
+    if (isOpen) {
+      setIsClosing(true)
+      setTimeout(() => {
+        setIsOpen(false)
+        setIsClosing(false)
+      }, 150) // animation duration
+    } else {
+      setIsOpen(true)
+    }
+  }
 
   const handleLogout = () => {
     // logout logic
     console.log('logout')
-    setIsOpen(false)
+    handleToggle()
   }
 
   // close dropdown if clicked outside
@@ -34,22 +52,22 @@ const LoggedDropdown = () => {
     <div className={styles.dropdown} ref={dropdownRef}>
       <button
         className={`${styles.dropButton} ${isOpen ? styles.dropButtonOpen : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggle}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
         <UserIcon />
-        Ignacio Prados
+        {username}
       </button>
-      {isOpen && (
-        <ul className={styles.dropdownContent} role="listbox">
+      {(isOpen || isClosing) && (
+        <ul className={`${styles.dropdownContent} ${isClosing ? styles.disabledDropdownContent : ''}`} role="listbox">
           <li role="option" className={styles.dropdownSelectContainer}>
             <button
               className={styles.dropdownSelect}
               onClick={handleLogout}
             >
               <LogoutIcon />
-              Logout
+              {t('logout')}
             </button>
           </li>
         </ul>

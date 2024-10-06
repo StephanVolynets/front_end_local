@@ -51,7 +51,10 @@ const PopupSkeleton = ({ children, setShowPopup, closePopup, setClosePopup, hide
         <div className={`${styles.popupBackground} ${reverseAnimation ? styles.disabledBackground : ''} ${removeBackground ? styles.removeBackground : ''}`}>
           <div className={`${styles.popupBody} ${reverseAnimation ? styles.disabledBody : ''} ${hide && styles.hideBody}`} style={{ width: width }}>
             <div className={styles.top}>
-              <div className={styles.topLeft}>{logo && <img src={`${logo}`}></img>}{title}</div>
+              <div className={styles.topLeft}>
+                {typeof logo === 'string' ? <img src={`${logo}`} alt="logo" /> : logo}
+                {title}
+                </div>
               <button className={styles.closeIconButton} onClick={handleClose}>
                 <CloseIcon className={styles.closeIcon} />
               </button>

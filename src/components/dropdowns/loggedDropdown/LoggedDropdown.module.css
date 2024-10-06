@@ -63,7 +63,7 @@
 
 @keyframes dropdownDisappearing {
   0% {
-    transform: translateY(0%);
+    transform: translateY(0);
     opacity: 1;
   }
   100% {
@@ -106,5 +106,50 @@
 @media (max-width: 800px) {
   .dropdowns, .dropdown, .dropButton, .dropdownContent {
     width: 100%;
+  }
+
+  .dropdownContent{
+    position: relative;
+  }
+
+  @keyframes dropdownAppearing {
+    0% {
+      height: 0px;
+      opacity: 0;
+    }
+    100% {
+      height: 45.6px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes dropdownDisappearing {
+    0% {
+      height: 45.6px;
+      opacity: 1;
+    }
+    100% {
+      height: 0px;
+      opacity: 0;
+    }
+  }
+
+  .dropdownSelect{
+    justify-content: center;
+  }
+
+  .dropdownContent.disabledDropdownContent {
+    animation: dropdownDisappearingMobile 0.15s ease-in-out forwards;
+  }
+
+  @keyframes dropdownDisappearingMobile {
+    0% {
+      height: 45.6px;
+      opacity: 1;
+    }
+    100% {
+      height: 0px;
+      opacity: 0;
+    }
   }
 }

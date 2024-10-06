@@ -118,12 +118,12 @@
 
 @media (max-width: 800px) {
   .dropdowns, .dropdown, .dropButton, .dropdownContent {
-    width: 100%;
+    width: 100% !important;
   }
 }
 
 @media (max-width: 500px) {
   .dropdownContent {
-    max-height: 200px; /* Altura máxima más pequeña para pantallas móviles */
+    max-height: 200px;
   }
 }
