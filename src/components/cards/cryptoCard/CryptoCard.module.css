@@ -1,0 +1,82 @@
+.card{
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px;
+  gap: 15px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.top{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.logo{
+  width: 24px;
+  height: 24px;
+}
+
+.name{
+  font-size: 16px;
+  font-family: 'ArchivoMedium';
+  color: var(--primary);
+}
+
+.bottom{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.price{
+  font-size: 24px;
+  font-family: 'AlbertSansSemiBold';
+  color: var(--primary);
+}
+
+.green, .grey, .red{
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-family: 'AlbertSansSemiBold';
+}
+
+.green svg, .grey svg, .red svg{
+  transition: all 0.1s;
+}
+
+.green{
+  color: var(--green);
+}
+
+.green path{
+  fill: var(--green);
+}
+
+.grey{
+  color: var(--tertiary);
+}
+
+.grey svg{
+  transform: rotate(90deg);
+}
+
+.grey path{
+  fill: var(--tertiary);
+}
+
+.red{
+  color: var(--red);
+}
+
+.red svg{
+  transform: rotate(180deg);
+}
+
+.red path{
+  fill: var(--red);
+}

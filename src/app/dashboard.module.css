@@ -27,3 +27,154 @@
   margin-top: 20px;
   text-align: center;
 }
+
+.cryptoCardsContainer{
+  display: flex;
+  gap: 15px;
+  max-width: 946px;
+  width: 100%;
+  margin-top: 60px;
+  position: relative;
+}
+
+.addCardButton{
+  position: absolute;
+  right: -17px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.addCardButton:hover{
+  background-color: var(--border);
+}
+
+.filters{
+  width: 100%;
+  max-width: 946px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.amountFilterContainer{
+  position: relative;
+  max-width: 200px;
+  width: 100%;
+}
+
+.amountFilter{
+  display: flex;
+  width: 100%;
+  padding: 15px 20px 15px 50px;
+  box-sizing: border-box;
+  border-radius: 0 10px 10px 0;
+  border: 1px solid var(--border);
+  height: 54px;
+  border-left: none;
+  background-color: var(--input);
+  font-family: 'AlbertSansSemiBold';
+  font-size: 16px;
+  color: var(--primary);
+  text-align: end;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* remove arrows from inputs type number */
+
+.amountFilter::-webkit-outer-spin-button,
+.amountFilter::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.amountFilter::placeholder{
+  color: var(--tertiary);
+}
+
+.dollarIcon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+}
+
+.filterButton{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 150px;
+  font-size: 16px;
+  font-family: 'ArchivoMedium';
+  color: var(--primary);
+  padding: 0;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.filterButton:hover{
+  background-color: var(--border);
+}
+
+@media (max-width: 800px) or (max-height: 600) {
+  .main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 84px 20px 40px;
+  }
+
+  .title{
+    font-size: 40px;
+    margin-top: 40px;
+  }
+
+  .cryptoCardsContainer{
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-top: 40px;
+  }
+
+  .addCardButton{
+    right: 50%;
+    top: calc(100% - 1px);
+    transform: translate(50%, -50%);
+  }
+  .filters{
+    margin-top: 30px;
+    flex-direction: column; 
+  }
+
+  .amountFilterContainer{
+    max-width: none;
+  }
+
+  .amountFilter{
+    border-radius: 0 0 15px 15px;
+    border-left: 1px solid var(--border);
+  }
+
+  .filterButton{
+    max-width: none;
+    margin-left: 0;
+    margin-top: 15px;
+  }
+  
+}

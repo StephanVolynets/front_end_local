@@ -11,12 +11,12 @@ const Carrousel = () => {
   const [currentAdIndex, setCurrentAdIndex] = useState(0)
 
   const ads = [
-    { img: "/img/ad-example-1.png", alt: t('Cripto Ad 1') },
-    { img: "/img/ad-example-2.png", alt: t('Cripto Ad 2') },
-    { img: "/img/ad-example-1.png", alt: t('Cripto Ad 1') },
-    { img: "/img/ad-example-2.png", alt: t('Cripto Ad 2') },
-    { img: "/img/ad-example-1.png", alt: t('Cripto Ad 1') },
-    { img: "/img/ad-example-2.png", alt: t('Cripto Ad 2') },
+    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1') },
+    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2') },
+    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1') },
+    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2') },
+    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1') },
+    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2') },
   ]
 
   const intervalRef = useRef(null)

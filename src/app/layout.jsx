@@ -4,7 +4,7 @@ import '@public/styles/global.css'
 
 export const metadata = {
   title: 'Silicore',
-  description: 'Your cripto web app',
+  description: 'Your crypto web app',
 }
 
 export default function RootLayout ({ children }) {
