@@ -9,6 +9,7 @@ import ExchangeRow from '@/components/tables/rows/Exchange'
 import NoResults from '@/components/tables/noResults/NoResults'
 import SortArrow from '@/components/icons/sortArrow'
 import ExchangeDetailsPopup from '@/components/popups/exchangeDetailsPopup/ExchangeDetailsPopup'
+import InfoIcon from '@/components/icons/infoIcon'
 
 
 const ExchangeTable = ({ exchanges }) => {
@@ -67,6 +68,7 @@ const ExchangeTable = ({ exchanges }) => {
               <div className={styles.headerContent}>
                 <SortArrows column="spread" sortState={sortState} handleSort={handleSort} />
                 {t('spread')}
+                <InfoIcon className={styles.infoIcon} />{/* tooltip here, i recomend react-tooltip*/}
               </div>
             </th>
             <th className={styles.headerTable}>
