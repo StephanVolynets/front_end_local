@@ -13,6 +13,7 @@ const MainCryptosPopup = ({ showPopup, setShowPopup }) => {
   const { t } = useTranslation()
 
   const [closePopup, setClosePopup] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   const cryptos = [
     { id: 1, logo: '/img/bitcoin-logo.png', name: 'Bitcoin' },
@@ -27,6 +28,10 @@ const MainCryptosPopup = ({ showPopup, setShowPopup }) => {
   ]
 
   const [selectedCryptos, setSelectedCryptos] = useState([])
+
+  const filteredCryptos = cryptos.filter(crypto =>
+    crypto.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   const handleMainCryptos = () => {
     // logic here
@@ -48,15 +53,25 @@ const MainCryptosPopup = ({ showPopup, setShowPopup }) => {
 
   const isSaveDisabled = selectedCryptos.length < 1 || selectedCryptos.lenght > 3
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
   if (showPopup) {
     return (
       <PopupSkeleton setShowPopup={setShowPopup} closePopup={closePopup} setClosePopup={setClosePopup} title={t('watchlist')}>
         <div className={styles.middle}>
           <div className={styles.inputContainer}>
-            <input type="text" placeholder={t('search cryptocurrency')} className={styles.input}/>
+            <input
+              type="text"
+              placeholder={t('search cryptocurrency')}
+              className={styles.input}
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
           </div>
           <div className={styles.cryptos}>
-            {cryptos.map((crypto) => (
+            {filteredCryptos.map((crypto) => (
               <MainCryptoButton
                 key={crypto.id}
                 id={crypto.id}

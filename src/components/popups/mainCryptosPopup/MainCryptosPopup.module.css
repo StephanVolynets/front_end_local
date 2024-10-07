@@ -4,6 +4,7 @@
   max-height: 460px;
   overflow-y: auto;
   flex-direction: column;
+  min-height: 405px;
 }
 
 .inputContainer{
@@ -92,6 +93,7 @@
 @media (max-width: 800px) or (max-height: 600px) {
   .middle{
     padding: 0 20px 127.4px 20px;
+    min-height: 200px;
   }
 
   .bottom{
