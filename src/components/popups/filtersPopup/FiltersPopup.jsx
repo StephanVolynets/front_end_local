@@ -16,7 +16,7 @@ const FiltersPopup = ({ showPopup, setShowPopup }) => {
 
   const [closePopup, setClosePopup] = useState(false)
 
-  const [selectedCountry, setSelectedCountry] = useState('')
+  const [selectedCountry, setSelectedCountry] = useState(1)
   const [selectedState, setSelectedState] = useState('')
   const [selectedExchanges, setSelectedExchanges] = useState('') // returns array of excluded exchanges
 
