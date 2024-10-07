@@ -28,7 +28,7 @@ const Dashboard = () => {
             <li className={styles.listItem}>
               <Trans 
                 i18nKey="privacy policy bullet one" 
-                components={[<a href='https://silicore.io' className={styles.underline} key="underline" />]}
+                components={[<a href='https://silicore.io' className={styles.underline} key="underline" target="_blank" rel="noopener noreferrer" />]}
               />
             </li>
             <li className={styles.listItem}>{t('privacy policy bullet two')}</li>
@@ -55,6 +55,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://silicore.io/privacy-policy'
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}
@@ -72,6 +73,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://silicore.io/privacy-policy#othersources'
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}
@@ -83,6 +85,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://silicore.io/privacy-policy#infouse' 
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}
@@ -94,6 +97,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://silicore.io/privacy-policy#whoshare'
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}
@@ -105,6 +109,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://silicore.io/privacy-policy#infosafe'
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}
@@ -116,6 +121,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://silicore.io/privacy-policy#privacyrights'
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}
@@ -127,6 +133,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://app.termly.io/notify/16ad9433-8337-48bc-b202-5ed7d5af4160' 
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}
@@ -138,6 +145,7 @@ const Dashboard = () => {
               components={{
                 1: <a href='https://silicore.io/privacy-policy#toc' 
                   className={styles.underline} key="underline" 
+                  target="_blank" rel="noopener noreferrer"
                 />,
                 2: <span className={styles.highlight} key="highlight" />
               }}

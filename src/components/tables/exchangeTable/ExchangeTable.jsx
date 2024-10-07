@@ -24,10 +24,16 @@ const ExchangeTable = ({ exchanges }) => {
   const [selectedExchangeIndex, setSelectedExchangeIndex] = useState(null);
 
   const handleSort = (column, direction) => {
-    setSortState(prevState => ({
-      ...prevState,
-      [column]: prevState[column] === direction ? null : direction
-    }));
+    setSortState(prevState => {
+      const newState = {
+        rating: null,
+        buyPrice: null,
+        spread: null,
+        sellPrice: null
+      };
+      newState[column] = prevState[column] === direction ? null : direction;
+      return newState;
+    });
   };
 
   const goToPreviousExchange = () => {
@@ -48,25 +54,25 @@ const ExchangeTable = ({ exchanges }) => {
             <th className={styles.headerTable}>
               <div className={styles.headerContent}>
                 <SortArrows column="rating" sortState={sortState} handleSort={handleSort} />
-                Rating
+                {t('rating')}
               </div>
             </th>
             <th className={styles.headerTable}>
               <div className={styles.headerContent}>
                 <SortArrows column="buyPrice" sortState={sortState} handleSort={handleSort} />
-                Buy price
+                {t('buy price')}
               </div>
             </th>
             <th className={styles.headerTable}>
               <div className={styles.headerContent}>
                 <SortArrows column="spread" sortState={sortState} handleSort={handleSort} />
-                Spread
+                {t('spread')}
               </div>
             </th>
             <th className={styles.headerTable}>
               <div className={styles.headerContent}>
                 <SortArrows column="sellPrice" sortState={sortState} handleSort={handleSort} />
-                Sell price
+                {t('sell price')}
               </div>
             </th>
             <th></th>
