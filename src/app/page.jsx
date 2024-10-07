@@ -251,11 +251,13 @@ const Dashboard = () => {
         <div className={styles.tableContainer}>
           <ExchangeTable exchanges={exchanges} />
         </div>
+        <Carrousel invertDots={true} />
       </main>
+
+      <Footer />
 
       <MainCryptosPopup showPopup={showMainCryptosPopup} setShowPopup={setShowMainCryptosPopup} />
       <FiltersPopup showPopup={showFiltersPopup} setShowPopup={setShowFiltersPopup} />
-      <Footer />
     </>
   )
 }
