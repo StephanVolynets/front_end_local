@@ -10,13 +10,13 @@ const Carrousel = ({ invertDots }) => {
 
   const [currentAdIndex, setCurrentAdIndex] = useState(0)
 
-  const ads = [
-    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1') },
-    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2') },
-    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1') },
-    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2') },
-    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1') },
-    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2') },
+  const ads = [ // you must use different imgs for desktop and mobile
+    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1'), href: "https://www.cryptomkt.com/" },
+    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2'), href: "https://www.okx.com/" },
+    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1'), href: "https://www.cryptomkt.com/" },
+    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2'), href: "https://www.okx.com/" },
+    { img: "/img/ad-example-1.png", alt: t('Crypto Ad 1'), href: "https://www.cryptomkt.com/" },
+    { img: "/img/ad-example-2.png", alt: t('Crypto Ad 2'), href: "https://www.okx.com/" },
   ]
 
   const intervalRef = useRef(null)
@@ -43,8 +43,9 @@ const Carrousel = ({ invertDots }) => {
   return (
     <aside className={`${styles.adBanner} ${invertDots && styles.invertBanner}`}>
       <div className={styles.adCarouselContainer}>
-        <div
+        <a
           className={styles.adCarousel}
+          href="https://www.example.com"
           style={{
             transform: `translateX(calc(-${currentAdIndex * 100}% - ${currentAdIndex * 20}px))`,
           }}
@@ -57,7 +58,7 @@ const Carrousel = ({ invertDots }) => {
               alt={ad.alt}
             />
           ))}
-        </div>
+        </a>
       </div>
       <div className={`${styles.adDots} ${invertDots && styles.invertDots}`}>
         {ads.map((_, index) => (

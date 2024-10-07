@@ -19,11 +19,11 @@
   justify-content: end;
   padding: 0;
   white-space: nowrap;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s;
 }
 
 .simpleArrowIcon{
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s;
 }
 
 .dropButtonOpen{
@@ -97,7 +97,7 @@
   align-items: center;
   border-radius: 0;
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s;
   box-sizing: border-box;
 }
 

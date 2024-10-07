@@ -9,8 +9,11 @@
 
 .inputContainer{
   display: flex;
-  padding-top: 20px;
+  padding: 20px 0 15px 0;
   border-top: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background-color: var(--background);
 }
 
 .input{
@@ -39,7 +42,6 @@
   flex-direction: row;
   gap: 10px;
   width: 100%;
-  margin-top: 15px;
   height: 100%;
 }
 

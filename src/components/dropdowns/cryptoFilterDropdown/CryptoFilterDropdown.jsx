@@ -17,7 +17,7 @@ const CryptoFilterDropdown = ({ selectedCrypto, setSelectedCrypto }) => {
   const cryptos = [
     { id: 1, abbr: 'btc', name: 'Bitcoin', logo: '/img/bitcoin-logo.png' },
     { id: 2, abbr: 'eth', name: 'Ethereum', logo: '/img/ethereum-logo.png' },
-    { id: 3, abbr: 'xlm', name: 'Stellar', logo: '/img/stellar-logo.png' }
+    { id: 3, abbr: 'xlm', name: 'Stellar', logo: '/img/stellar-logo.png' },
   ]
   const [selectedCryptoLocal, setSelectedCryptoLocal] = useState(cryptos.find(c => c.id === selectedCrypto))
   const [searchTerm, setSearchTerm] = useState('')
