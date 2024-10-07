@@ -199,62 +199,58 @@ const Dashboard = () => {
     <>
       <TopBar />
       <main className={styles.main}>
-        <section aria-label="Criptomonedas destacadas">
-          <Carrousel />
-          <h1 className={styles.title}>
-            <Trans 
-              i18nKey="homepage title" 
-              components={[<span className={styles.highlight} key="highlight" />]}
+        <Carrousel />
+        <h1 className={styles.title}>
+          <Trans 
+            i18nKey="homepage title" 
+            components={[<span className={styles.highlight} key="highlight" />]}
+          />
+        </h1>
+        <h2 className={styles.subtitle}>{t('homepage subtitle')}</h2>
+        <div className={styles.cryptoCardsContainer}>
+          {cryptos.map((crypto, index) => (
+            <CryptoCard key={index} crypto={crypto} />
+          ))}
+          <button onClick={() => setShowMainCryptosPopup(true)} className={styles.addCardButton}>
+            <PlusIcon />
+          </button>
+        </div>
+        <div className={styles.filters}>
+          <CryptoFilterDropdown 
+            selectedCrypto={selectedCrypto} 
+            setSelectedCrypto={setSelectedCrypto} 
+          />
+          <FiatFilterDropdown 
+            selectedFiat={selectedFiat} 
+            setSelectedFiat={setSelectedFiat} 
+          />
+          <div className={styles.amountFilterContainer}>
+            <DollarIcon className={styles.dollarIcon}/>
+            <input 
+              type="text" 
+              inputMode="decimal" 
+              className={styles.amountFilter} 
+              placeholder='1,247.45'
+              value={amount}
+              onChange={handleAmountChange}
             />
-          </h1>
-          <h2 className={styles.subtitle}>{t('homepage subtitle')}</h2>
-          <div className={styles.cryptoCardsContainer}>
-            {cryptos.map((crypto, index) => (
-              <CryptoCard key={index} crypto={crypto} />
-            ))}
-            <button onClick={() => setShowMainCryptosPopup(true)} className={styles.addCardButton}>
-              <PlusIcon />
-            </button>
           </div>
-          <div className={styles.filters}>
-            <CryptoFilterDropdown 
-              selectedCrypto={selectedCrypto} 
-              setSelectedCrypto={setSelectedCrypto} 
-            />
-            <FiatFilterDropdown 
-              selectedFiat={selectedFiat} 
-              setSelectedFiat={setSelectedFiat} 
-            />
-            <div className={styles.amountFilterContainer}>
-              <DollarIcon className={styles.dollarIcon}/>
-              <input 
-                type="text" 
-                inputMode="decimal" 
-                className={styles.amountFilter} 
-                placeholder='1,247.45'
-                value={amount}
-                onChange={handleAmountChange}
-              />
-            </div>
-            <button 
-              className={styles.filterButton}
-              onClick={() => setShowFiltersPopup(true)}
-            >
-              {t('filter')} <FilterIcon/>
-            </button>
-          </div>
-          
-          <section aria-label="Comparación de exchanges">
-            <div className={styles.selectedCrypto}>
-              <img className={styles.cryptoLogo} src={cryptos[0].logo} alt={`${cryptos[0].name} logo`} />
-              <p className={styles.cryptoName}>{cryptos[0].name}</p>
-              <p className={styles.cryptoExchanges}>{exchanges?.length} exchanges</p>
-            </div>
-            <div className={styles.tableContainer}>
-              <ExchangeTable exchanges={exchanges} />
-            </div>
-          </section>
-        </section>
+          <button 
+            className={styles.filterButton}
+            onClick={() => setShowFiltersPopup(true)}
+          >
+            {t('filter')} <FilterIcon/>
+          </button>
+        </div>
+
+        <div className={styles.selectedCrypto}>
+          <img className={styles.cryptoLogo} src={cryptos[0].logo} alt={`${cryptos[0].name} logo`} />
+          <p className={styles.cryptoName}>{cryptos[0].name}</p>
+          <p className={styles.cryptoExchanges}>{exchanges?.length} exchanges</p>
+        </div>
+        <div className={styles.tableContainer}>
+          <ExchangeTable exchanges={exchanges} />
+        </div>
       </main>
 
       <MainCryptosPopup showPopup={showMainCryptosPopup} setShowPopup={setShowMainCryptosPopup} />
