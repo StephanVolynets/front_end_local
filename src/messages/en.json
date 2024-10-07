@@ -20,6 +20,7 @@
 
   "founded in": "Founded in",
   "monthly users": "monthly users",
+  "mau": "MAU",
   "employees": "employees",
   "countries": "countries",
   "has": "Has",
@@ -63,6 +64,9 @@
   "logout": "Logout",
   "log out": "Log out",
 
+  "previous": "Previous",
+  "next": "Next",
+
   "main cryptos": "Main Cryptos",
   "search cryptocurrency": "Search cryptocurrency",
   "search fiat currency": "Search fiat currency",
@@ -70,8 +74,18 @@
   "filters": "Filters",
   "search by country": "Search by country",
   "search by state": "Search by state",
+  "watchlist": "Watchlist",
+  "country": "Country",
+  "state": "State",
 
   "you can choose up to 3 cryptos.": "You can choose up to 3 cryptos.",
+  "no exchanges found": "No exchanges found",
+  "sorry, we couldn’t find any exchanges matching your criteria right now.": "Sorry, we couldn’t find any exchanges matching your criteria right now.",
+
+  "rating": "Rating",
+  "buy price": "Buy price",
+  "spread": "Spread",
+  "sell price": "Sell price",
 
   "privacy policy title": "PRIVACY POLICY",
   "privacy policy subtitle": "Last updated September 14, 2024",

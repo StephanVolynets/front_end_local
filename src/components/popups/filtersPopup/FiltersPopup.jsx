@@ -31,12 +31,12 @@ const FiltersPopup = ({ showPopup, setShowPopup }) => {
         <div className={styles.middle}>
           <div className={styles.dropdownFilters}>
             <div className={styles.dropdown}>
-              <label className={styles.label} htmlFor="country">Country</label>
+              <label className={styles.label} htmlFor="country">{t('country')}</label>
               <CountryFilterDropdown selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
             </div>
             <div className={styles.dropdown}>
-              <label className={styles.label} htmlFor="state">State</label>
-              <StateFilterDropdown selectedState={selectedState} setSelectedState={setSelectedState}/>
+              <label className={styles.label} htmlFor="state">{t('state')}</label>
+              <StateFilterDropdown selectedState={selectedState} setSelectedState={setSelectedState} selectedCountry={selectedCountry}/>
             </div>
           </div>
           <div className={styles.exchangesSelector}>

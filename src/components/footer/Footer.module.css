@@ -105,7 +105,12 @@
   }
 
   .linksContainer{
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact{
+    flex-direction: column;
   }
 
   .silicoreText{

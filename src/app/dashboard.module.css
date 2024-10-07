@@ -89,6 +89,10 @@
   -moz-appearance: textfield;
 }
 
+.amountFilter:focus{
+  outline: none;
+}
+
 /* remove arrows from inputs type number */
 
 .amountFilter::-webkit-outer-spin-button,
@@ -129,6 +133,43 @@
 
 .filterButton:hover{
   background-color: var(--border);
+}
+
+.selectedCrypto{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 60px;
+  max-width: 946px;
+  width: 100%;
+}
+
+.cryptoLogo{
+  width: 30px;
+  height: 30px;
+}
+
+.cryptoName{
+  font-family: 'ArchivoSemibold';
+  font-size: 30px;
+  color: var(--primary);
+}
+
+.cryptoExchanges{
+  font-family: 'ArchivoMedium';
+  font-size: 16px;
+  color: var(--tertiary);
+  margin-left: 5px;
+}
+
+.tableContainer{
+  width: 100%;
+  max-width: 946px;
+  margin-top: 40px;
+}
+
+.tableContainer::-webkit-scrollbar {
+  height: 3px;
 }
 
 @media (max-width: 800px) or (max-height: 600) {
@@ -175,6 +216,11 @@
     max-width: none;
     margin-left: 0;
     margin-top: 15px;
+  }
+
+  .tableContainer{
+    overflow-x: auto;
+    padding-bottom: 10px;
   }
   
 }

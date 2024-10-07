@@ -1,0 +1,53 @@
+.headerTable{
+  font-size: 16px;
+  font-family: 'ArchivoRegular';
+  color: var(--secondary);
+  padding-bottom: 15px;
+}
+
+.table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customerContainer{
+  display: flex;
+  flex: 1;
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25px;
+}
+
+.sortArrowUp{
+  cursor: pointer;
+}
+
+.sortArrowDown{
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+
+.sortArrowUp:hover path, .sortArrowDown:hover path{
+  fill: var(--secondary);
+}
+
+.activeUp path, .activeDown path{
+  fill: var(--primary);
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+@media (max-width: 800px) {
+  .table{
+    min-width: 946px;
+  }
+  
+}

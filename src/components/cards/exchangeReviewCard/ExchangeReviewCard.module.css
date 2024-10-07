@@ -22,7 +22,7 @@
   color: var(--primary);
 }
 
-.stars svg{
+.starsViewer svg{
   width: 18px;
   height: 18px;
 }

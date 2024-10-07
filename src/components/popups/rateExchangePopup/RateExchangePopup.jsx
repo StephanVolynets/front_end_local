@@ -46,7 +46,7 @@ const RateExchangePopup = ({ showPopup, setShowPopup, exchange, logo }) => {
       <PopupSkeleton setShowPopup={setShowPopup} removeBackground={true} title={t('Rate exchange')}>
         <>
           <div className={styles.middle}>
-            <StarsSelector onRatingChange={handleRatingChange} className={styles.stars} />
+            <StarsSelector onRatingChange={handleRatingChange} className={styles.starsSelectable} />
             <label className={styles.label}>{t('review')}</label>
             <textarea
               className={styles.input}

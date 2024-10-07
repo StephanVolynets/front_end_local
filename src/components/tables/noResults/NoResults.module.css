@@ -1,0 +1,25 @@
+.noActivity{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.noActivityTitle{
+  font-family: 'ArchivoSemibold';
+  font-size: 16px;
+  color: var(--secondary);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.noActivitySubtitle{
+  font-family: 'ArchivoMedium';
+  font-size: 16px;
+  color: var(--tertiary);
+  margin-top: 10px;
+  max-width: 266px;
+  text-align: center;
+}

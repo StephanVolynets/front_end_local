@@ -55,7 +55,7 @@ const EditRateExchangePopup = ({ showPopup, setShowPopup, exchangeLogo, exchange
           <div className={styles.middle}>
             <StarsSelector 
               onRatingChange={handleRatingChange} 
-              className={styles.stars} 
+              className={styles.starsSelectable} 
               initialRating={rating}
             />
             <label className={styles.label}>{t('review')}</label>

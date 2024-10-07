@@ -39,7 +39,7 @@ const StarsSelector = ({ className, onRatingChange, initialRating = 0 }) => {
   return (
     <div className={styles.starsSelector}>
       <p className={styles.rating}>{hover || rating || '-'} / 5</p>
-      <div className={`${styles.stars} ${className}`}>{renderStars()}</div>
+      <div className={`${styles.starsSelectable} ${className}`}>{renderStars()}</div>
     </div>
   )
 }

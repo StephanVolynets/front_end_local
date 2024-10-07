@@ -4,7 +4,7 @@
   padding: 0 20px 20px 20px;
 }
 
-.stars svg{
+.starsSelectable svg{
   cursor: pointer;
   width: 45px;
   height: 45px;

@@ -50,8 +50,11 @@ const MainCryptosPopup = ({ showPopup, setShowPopup }) => {
 
   if (showPopup) {
     return (
-      <PopupSkeleton setShowPopup={setShowPopup} closePopup={closePopup} setClosePopup={setClosePopup} title={'Main cryptos'}>
+      <PopupSkeleton setShowPopup={setShowPopup} closePopup={closePopup} setClosePopup={setClosePopup} title={t('watchlist')}>
         <div className={styles.middle}>
+          <div className={styles.inputContainer}>
+            <input type="text" placeholder={t('search cryptocurrency')} className={styles.input}/>
+          </div>
           <div className={styles.cryptos}>
             {cryptos.map((crypto) => (
               <MainCryptoButton

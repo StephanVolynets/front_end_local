@@ -40,9 +40,6 @@ const TopBar = () => {
         <Link href="/">
           <SilicoreLogo withText={true}/>
         </Link>
-        {pathname === '/privacy-policy' &&
-         <Link className={styles.link} href='/'>{t('home')}</Link>
-        }
       </div>
       <div className={styles.buttons}>
         <CountryDropdown />

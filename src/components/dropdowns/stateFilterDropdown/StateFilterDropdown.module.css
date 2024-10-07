@@ -8,6 +8,7 @@
   box-sizing: border-box;
   display: flex;
   border-radius: 10px;
+  color: var(--primary);
   background-color: var(--background);
   border: 1px solid var(--border);
   padding: 14.2px 20px;
@@ -141,6 +142,23 @@
 
 .background::placeholder{
   color: var(--tertiary);
+}
+
+.disabled{
+  background-color: var(--input);
+  cursor: not-allowed;
+}
+
+.disabled .stateCode{
+  color: var(--tertiary);
+}
+
+.disabled .arrowIcon path{
+  stroke: var(--tertiary);
+}
+
+.disabled:hover{
+  background-color: var(--input);
 }
 
 @media (max-width: 800px) {

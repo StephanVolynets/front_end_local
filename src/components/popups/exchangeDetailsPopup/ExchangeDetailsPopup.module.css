@@ -15,13 +15,18 @@
   border-top: 1px solid var(--border);
 }
 
-.infoValue{
+.infoValue, .infoValueMAU, .infoValueMAUMobile{
   font-size: 16px;
   font-family: 'ArchivoMedium';
   gap: 10px;
   display: flex;
   text-wrap: nowrap;
   color: var(--primary);
+}
+
+.infoValueMAUMobile{
+  display: none;
+  visibility: hidden;
 }
 
 /* Reviews */
@@ -183,36 +188,141 @@
   color: var(--primary);
 }
 
+/* Navigation buttons*/
+
+.navigationButtons{
+  position: absolute;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 500px;
+  opacity: 0;
+  animation: gap 0.3s 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+  z-index: 1; /* so it doesn't cover the slider*/
+}
+
+@keyframes gap {
+  0% {
+    gap: 500px;
+    opacity: 0;
+  }
+  100% {
+    gap: 660px;
+    opacity: 1;
+  }
+  
+}
+
+.navButton{
+  padding: 0;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'ArchivoSemiBold';
+  color: var(--primary);
+}
+
+.navButtonDisabled{
+  opacity: 0;
+  cursor: default;
+}
+
+.arrowIconRight{
+  transform: rotate(180deg);
+}
+
+.mobileNavText{
+  display: none;
+  visibility: hidden;
+}
+
 @media (max-width: 800px) or (max-height: 600px) {
   .bottom{
     position: fixed;
     bottom: 0;
     border-radius: 0;
+    z-index: 2;
   }
   
   .middle{
-    padding: 0 25px 187px 25px;
+    padding: 0 25px 242px 25px;
+  }
+
+  .infoValueMAU{
+    display: none;
+    visibility: hidden;
+  }
+
+  .infoValueMAUMobile{
+    display: flex;
+    visibility: visible;
   }
 
   .bottom{
     flex-direction: column;
   }
+
   .hiddenLabel{
     display: flex;
     visibility: visible;
   }
+
   .socialMedia{
     justify-content: space-between;
     width: 100%;
   }
+
   .icons{
     display: flex;
     gap: 30px;
   }
+  
   .buttons{
     flex-direction: column;
     width: 100%;
   }
+
+  .navigationButtons{
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    display: flex;
+    gap: 20px;
+    opacity: 1;
+    animation: none;
+    width: 100%;
+    background-color: var(--background);
+  }
+
+  .navButton{
+    padding: 10px;
+    border-radius: 500px;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    transition: all 0.1s;
+  }
+  
+  .navButtonDisabled{
+    opacity: 0;
+    cursor: default;
+  }
+
+  .mobileNavText{
+    display: flex;
+    visibility: visible;
+  }
+  
 }
 
 @media (max-width: 400px) {

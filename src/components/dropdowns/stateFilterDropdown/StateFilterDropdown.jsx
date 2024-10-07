@@ -7,12 +7,14 @@ import React, { useState, useEffect, useRef } from 'react'
 
 import SimpleArrowIcon from '@/components/icons/simpleArrowIcon'
 
-const StateFilterDropdown = ({ selectedState, setSelectedState }) => {
+const StateFilterDropdown = ({ selectedState, setSelectedState, selectedCountry }) => {
   const { t } = useTranslation()
 
   const [reverseAnimation, setReverseAnimation] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
+
+  const isDisabled = selectedCountry !== 1 // (id of United States)
 
   const states = [
     { id: 1, code: 'All' },
@@ -58,18 +60,28 @@ const StateFilterDropdown = ({ selectedState, setSelectedState }) => {
     }
   }, [])
 
+  // resets to state 'All' when Country is not 'United States'
+  useEffect(() => {
+    if (isDisabled) {
+      const allState = states.find(s => s.code === 'All')
+      setSelectedStateLocal(allState)
+      setSelectedState(allState.id)
+    }
+  }, [isDisabled, setSelectedState])
+
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <button
-        className={`${styles.dropButton} ${isOpen ? styles.dropButtonOpen : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
+        className={`${styles.dropButton} ${isOpen ? styles.dropButtonOpen : ''} ${isDisabled ? styles.disabled : ''}`}
+        onClick={() => !isDisabled && setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        disabled={isDisabled}
       >
         <span className={styles.stateCode}>{selectedStateLocal.code}</span>
         <SimpleArrowIcon className={`${styles.arrowIcon} ${isOpen ? styles.arrowIconOpen : ''}`} />
       </button>
-      {isOpen && (
+      {isOpen && !isDisabled && (
         <ul className={`${styles.dropdownContent} ${reverseAnimation ? styles.disabledDropdownContent : ''}`} role="listbox">
           <li className={styles.searchContainer}>
             <input

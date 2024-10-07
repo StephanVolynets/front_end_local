@@ -28,7 +28,7 @@ const ExchangeReviewCard = ({ exchange, review, onEditReview, showEditRateExchan
       <div className={styles.card}>
         <div className={styles.top}>
           <p className={styles.rating}>{rating} / 5</p>
-          <StarsViewer reviewAverage={rating} className={styles.stars}/>
+          <StarsViewer reviewAverage={rating} className={styles.starsViewer}/>
           <p className={styles.time}>{getTimeString(time, typeTime)} {t('ago')}</p>
           {user === actualUser
             ? <button className={styles.editButton} onClick={handleEditClick}>{t('Edit')}</button>

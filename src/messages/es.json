@@ -21,6 +21,7 @@
   "founded in": "Fundado en",
   "monthly users": "usuarios mensuales",
   "employees": "empleados",
+  "mau": "UAM",
   "countries": "países",
   "has": "Tiene",
   "see reviews": "Ver reseñas",
@@ -63,6 +64,9 @@
   "logout": "Cerrar sesión",
   "log out": "Cerrar sesión",
 
+  "previous": "Anterior",
+  "next": "Siguiente",
+
   "main cryptos": "Criptos principales",
   "search cryptocurrency": "Buscar criptomoneda",
   "search fiat currency": "Buscar divisa",
@@ -70,9 +74,19 @@
   "filters": "Filtros",
   "search by country": "Buscar por país",
   "search by state": "Buscar por estado",
+  "watchlist": "Lista de seguimiento",
+  "country": "País",
+  "state": "Estado",
 
   "you can choose up to 3 cryptos.": "Puedes elegir hasta 3 criptomonedas.",
+  "no exchanges found": "No se encontraron exchanges",
+  "sorry, we couldn’t find any exchanges matching your criteria right now.": "Lo sentimos, no pudimos encontrar exchanges que coincidan con tus criterios en este momento.",
 
+  "rating": "Calificación",
+  "buy price": "Precio de compra",
+  "spread": "Diferencial",
+  "sell price": "Precio de venta",
+  
   "privacy policy title": "POLÍTICA DE PRIVACIDAD",
   "privacy policy subtitle": "Última actualización el 14 de septiembre de 2024",
   "privacy policy paragraph one": "Este Aviso de Privacidad para Silicore LLC (operando como Silicore) (\"<0>nosotros</0>\", \"<0>nos</0>\" o \"<0>nuestro</0>\"), describe cómo y por qué podríamos acceder, recopilar, almacenar, usar y/o compartir (\"<0>procesar</0>\") tu información personal cuando usas nuestros servicios (\"<0>Servicios</0>\"), incluyendo cuando:",

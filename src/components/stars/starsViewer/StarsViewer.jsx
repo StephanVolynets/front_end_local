@@ -1,10 +1,22 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import styles from './StarsViewer.module.css'
-
 import StarIcon from '@/components/icons/starIcon'
 
 const StarsViewer = ({ reviewAverage, className }) => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkScreenWidth = () => {
+      setIsMobile(window?.innerWidth <= 380)
+    }
+
+    checkScreenWidth()
+    window.addEventListener('resize', checkScreenWidth)
+
+    return () => window?.removeEventListener('resize', checkScreenWidth)
+  }, [])
 
   const renderStars = () => {
     const stars = []
@@ -24,7 +36,9 @@ const StarsViewer = ({ reviewAverage, className }) => {
   }
 
   return (
-    <div className={`${styles.stars} ${className}` }>{renderStars()}</div>
+    <div className={`${styles.stars} ${className}`}>
+      {isMobile ? renderStars()[0] : renderStars()}
+    </div>
   )
 }
 
