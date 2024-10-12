@@ -2,7 +2,7 @@
 
 import styles from "./dashboard.module.css";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { formatThousands } from "@/utils/formatThousands";
 
@@ -19,7 +19,6 @@ import MainCryptosPopup from "@/components/popups/mainCryptosPopup/MainCryptosPo
 import FiltersPopup from "@/components/popups/filtersPopup/FiltersPopup";
 import ExchangeTable from "@/components/tables/exchangeTable/ExchangeTable";
 import { useSocket } from "@/context/SocketContext";
-import { useEffect } from "react";
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -37,7 +36,7 @@ const Dashboard = () => {
     // exchanges example data for table
     {
       name: "Binance",
-      logo: "/img/binance-logo-example.png",
+      logo: "/img/exchanges/binance.png",
       rating: 4.2,
       reviewCount: 320,
       buyPrice: 65786.4,
@@ -77,7 +76,7 @@ const Dashboard = () => {
     },
     {
       name: "Binance",
-      logo: "/img/binance-logo-example.png",
+      logo: "/img/exchanges/binance.png",
       rating: 2.1,
       reviewCount: 23,
       buyPrice: 65780.4,
@@ -117,7 +116,7 @@ const Dashboard = () => {
     },
     {
       name: "Binance",
-      logo: "/img/binance-logo-example.png",
+      logo: "/img/exchanges/binance.png",
       rating: 3.9,
       reviewCount: 123,
       buyPrice: 65790.4,
@@ -157,7 +156,7 @@ const Dashboard = () => {
     },
     {
       name: "Binance",
-      logo: "/img/binance-logo-example.png",
+      logo: "/img/exchanges/binance.png",
       rating: 1.7,
       reviewCount: 31,
       buyPrice: 65795.4,
@@ -197,7 +196,7 @@ const Dashboard = () => {
     },
     {
       name: "Binance",
-      logo: "/img/binance-logo-example.png",
+      logo: "/img/exchanges/binance.png",
       rating: 4.7,
       reviewCount: 345,
       buyPrice: 65800.4,
@@ -271,10 +270,30 @@ const Dashboard = () => {
     }
   };
 
+  const updateSocketExchanges = useCallback((newData) => {
+    setSocketExchanges((prevExchanges) => {
+      const index = prevExchanges.findIndex(
+        (exchange) =>
+          exchange.symbol === newData.symbol &&
+          exchange.exchange === newData.exchange
+      );
+
+      if (index !== -1) {
+        // replace the existing object
+        const updatedExchanges = [...prevExchanges];
+        updatedExchanges[index] = newData;
+        return updatedExchanges;
+      } else {
+        // add the new object
+        return [...prevExchanges, newData];
+      }
+    });
+  }, []);
+
   useEffect(() => {
     if (socket) {
       socket.on("message", (data) => {
-        setSocketExchanges(data);
+        updateSocketExchanges(data);
         console.log("Received message socket.io:", data);
       });
     }
@@ -284,7 +303,9 @@ const Dashboard = () => {
         socket.off("message");
       }
     };
-  }, [socket]);
+  }, [socket, updateSocketExchanges]);
+
+  console.log("socketExchanges", socketExchanges);
 
   return (
     <>
@@ -349,7 +370,10 @@ const Dashboard = () => {
           </p>
         </div>
         <div className={styles.tableContainer}>
-          <ExchangeTable exchanges={socketExchanges || exchanges} />
+          <ExchangeTable
+            exchanges={socketExchanges || exchanges}
+            cryptoName={cryptos[0].name}
+          />
         </div>
         <Carrousel invertDots={true} />
       </main>
