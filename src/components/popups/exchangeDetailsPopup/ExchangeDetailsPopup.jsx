@@ -3,7 +3,7 @@
 import styles from "./ExchangeDetailsPopup.module.css";
 
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import PopupSkeleton from "@/components/popups/popupSkeleton/PopupSkeleton.jsx";
 import StarsViewer from "@/components/stars/starsViewer/StarsViewer";
@@ -21,6 +21,7 @@ import LinkedinIcon from "@/components/icons/linkedinIcon";
 import ExchangeReviewsPopup from "@/components/popups/exchangeReviewsPopup/ExchangeReviewsPopup";
 import RateExchangePopup from "@/components/popups/rateExchangePopup/RateExchangePopup";
 import ArrowIcon from "@/components/icons/arrowIcon";
+import axios from "axios";
 
 const ExchangeDetailsPopup = ({
   showPopup,
@@ -37,6 +38,27 @@ const ExchangeDetailsPopup = ({
 
   const [showReviewsPopup, setShowReviewsPopup] = useState(false);
   const [showRateExchangePopup, setShowRateExchangePopup] = useState(false);
+  const [exchangeReviews, setExchangeReviews] = useState([]);
+
+  const getExchangeReviews = async (exchangeName) => {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/ratings/${exchangeName}`,
+      {
+        headers: {
+          "X-API-Key": process.env.NEXT_PUBLIC_BACKEND_API_KEY,
+        },
+      }
+    );
+    setExchangeReviews(res.data);
+  };
+
+  useEffect(() => {
+    if (exchange.exchange) {
+      getExchangeReviews(exchange.exchange);
+    }
+  }, [exchange.exchange]);
+
+  console.log(exchangeReviews);
 
   if (showPopup) {
     return (
@@ -202,6 +224,7 @@ const ExchangeDetailsPopup = ({
             setShowPopup={setShowReviewsPopup}
             exchange={exchange}
             removeBackground={true}
+            exchangeReviews={exchangeReviews}
           />
           <RateExchangePopup
             showPopup={showRateExchangePopup}

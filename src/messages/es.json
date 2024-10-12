@@ -82,7 +82,7 @@
 
   "you can choose up to 3 cryptos.": "Puedes elegir hasta 3 criptomonedas.",
   "no exchanges found": "No se encontraron exchanges",
-  "sorry, we couldn’t find any exchanges matching your criteria right now.": "Lo sentimos, no pudimos encontrar exchanges que coincidan con tus criterios en este momento.",
+  "sorry, we couldn't find any exchanges matching your criteria right now.": "Lo sentimos, no pudimos encontrar exchanges que coincidan con tus criterios en este momento.",
 
   "rating": "Calificación",
   "buy price": "Precio de compra",
@@ -105,5 +105,6 @@
   "privacy policy paragraph nine": "<2>¿Cómo protegemos tu información?</2> Tenemos procesos y procedimientos organizacionales y técnicos adecuados para proteger tu información personal. Sin embargo, ninguna transmisión electrónica a través de internet o tecnología de almacenamiento de información puede garantizarse como 100% segura, por lo que no podemos prometer ni garantizar que hackers, ciberdelincuentes u otras partes no autorizadas no puedan vencer nuestra seguridad y recopilar, acceder, robar o modificar tu información de manera inapropiada. Aprende más sobre <1>cómo mantenemos segura tu información.</1>",
   "privacy policy paragraph ten": "<2>¿Cuáles son tus derechos?</2> Dependiendo de dónde te encuentres geográficamente, la ley de privacidad aplicable puede significar que tienes ciertos derechos con respecto a tu información personal. Aprende más sobre <1>tus derechos de privacidad.</1>",
   "privacy policy paragraph eleven": "<2>¿Cómo ejercitas tus derechos?</2> La manera más fácil de ejercitar tus derechos es mediante el envío de una <1>solicitud de acceso de sujeto de datos</1>, o poniéndote en contacto con nosotros. Consideraremos y actuaremos sobre cualquier solicitud de acuerdo con las leyes de protección de datos aplicables.",
-  "privacy policy paragraph twelve": "¿Quieres saber más sobre lo que hacemos con cualquier información que recopilamos? <1>Revisa el Aviso de Privacidad completo.</1>"
+  "privacy policy paragraph twelve": "¿Quieres saber más sobre lo que hacemos con cualquier información que recopilamos? <1>Revisa el Aviso de Privacidad completo.</1>",
+  "time_ago": "hace {{timeAgo}}"
 }
