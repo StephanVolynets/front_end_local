@@ -1,36 +1,46 @@
-'use client'
+"use client";
 
-import styles from './ExchangeDetailsPopup.module.css'
+import styles from "./ExchangeDetailsPopup.module.css";
 
-import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
-import PopupSkeleton from '@/components/popups/popupSkeleton/PopupSkeleton.jsx'
-import StarsViewer from '@/components/stars/starsViewer/StarsViewer'
-import Slider from '@/components/slider/Slider'
+import PopupSkeleton from "@/components/popups/popupSkeleton/PopupSkeleton.jsx";
+import StarsViewer from "@/components/stars/starsViewer/StarsViewer";
+import Slider from "@/components/slider/Slider";
 
-import WorldIcon from '@/components/icons/worldIcon'
-import FingerprintIcon from '@/components/icons/fingerprintIcon'
-import UsersIcon from '@/components/icons/usersIcon'
-import BuildingIcon from '@/components/icons/buildingIcon'
-import PointerIcon from '@/components/icons/pointerIcon'
-import CalendarIcon from '@/components/icons/calendarIcon'
-import XIcon from '@/components/icons/xIcon'
-import InstagramIcon from '@/components/icons/instagramIcon'
-import LinkedinIcon from '@/components/icons/linkedinIcon'
-import ExchangeReviewsPopup from '@/components/popups/exchangeReviewsPopup/ExchangeReviewsPopup'
-import RateExchangePopup from '@/components/popups/rateExchangePopup/RateExchangePopup'
-import ArrowIcon from '@/components/icons/arrowIcon'
+import WorldIcon from "@/components/icons/worldIcon";
+import FingerprintIcon from "@/components/icons/fingerprintIcon";
+import UsersIcon from "@/components/icons/usersIcon";
+import BuildingIcon from "@/components/icons/buildingIcon";
+import PointerIcon from "@/components/icons/pointerIcon";
+import CalendarIcon from "@/components/icons/calendarIcon";
+import XIcon from "@/components/icons/xIcon";
+import InstagramIcon from "@/components/icons/instagramIcon";
+import LinkedinIcon from "@/components/icons/linkedinIcon";
+import ExchangeReviewsPopup from "@/components/popups/exchangeReviewsPopup/ExchangeReviewsPopup";
+import RateExchangePopup from "@/components/popups/rateExchangePopup/RateExchangePopup";
+import ArrowIcon from "@/components/icons/arrowIcon";
 
-const ExchangeDetailsPopup = ({ showPopup, setShowPopup, exchange, goToPreviousExchange, goToNextExchange, isFirstExchange, isLastExchange }) => {
-  const { t } = useTranslation()
+const ExchangeDetailsPopup = ({
+  showPopup,
+  setShowPopup,
+  exchange,
+  goToPreviousExchange,
+  goToNextExchange,
+  isFirstExchange,
+  isLastExchange,
+  exchangePayments,
+  exchangeNetworks,
+}) => {
+  const { t } = useTranslation();
 
-  const [showReviewsPopup, setShowReviewsPopup] = useState(false)
-  const [showRateExchangePopup, setShowRateExchangePopup] = useState(false)
+  const [showReviewsPopup, setShowReviewsPopup] = useState(false);
+  const [showRateExchangePopup, setShowRateExchangePopup] = useState(false);
 
   if (showPopup) {
     return (
-      <PopupSkeleton 
+      <PopupSkeleton
         setShowPopup={setShowPopup}
         logo={exchange.logo}
         title={exchange.name}
@@ -39,93 +49,172 @@ const ExchangeDetailsPopup = ({ showPopup, setShowPopup, exchange, goToPreviousE
         <>
           <div className={styles.middle}>
             <div className={styles.info}>
-              {exchange.foundedIn && <p className={styles.infoValue}><CalendarIcon aria-hidden="true" />{t('founded in')} {exchange.foundedIn}</p>}
-              {exchange.place && <p className={styles.infoValue}><PointerIcon aria-hidden="true" />{exchange.place}</p>}
-              {exchange.users && <p className={styles.infoValueMAU}><UsersIcon aria-hidden="true" />{exchange.users} {t('monthly users')}</p>}
-              {exchange.users && <p className={styles.infoValueMAUMobile}><UsersIcon aria-hidden="true" />{exchange.users} {t('mau')}</p>}
-              {exchange.employees && <p className={styles.infoValue}><BuildingIcon aria-hidden="true" />{exchange.employees} {t('employees')}</p>}
-              {exchange.countries && <p className={styles.infoValue}><WorldIcon aria-hidden="true" />{exchange.countries} {t('countries')}</p>}
-              {exchange.kyc && <p className={styles.infoValue}><FingerprintIcon aria-hidden="true" />{t('has')} {exchange.kyc}</p>}
+              {exchange.foundedIn && (
+                <p className={styles.infoValue}>
+                  <CalendarIcon aria-hidden="true" />
+                  {t("founded in")} {exchange.foundedIn}
+                </p>
+              )}
+              {exchange.place && (
+                <p className={styles.infoValue}>
+                  <PointerIcon aria-hidden="true" />
+                  {exchange.place}
+                </p>
+              )}
+              {exchange.users && (
+                <p className={styles.infoValueMAU}>
+                  <UsersIcon aria-hidden="true" />
+                  {exchange.users} {t("monthly users")}
+                </p>
+              )}
+              {exchange.users && (
+                <p className={styles.infoValueMAUMobile}>
+                  <UsersIcon aria-hidden="true" />
+                  {exchange.users} {t("mau")}
+                </p>
+              )}
+              {exchange.employees && (
+                <p className={styles.infoValue}>
+                  <BuildingIcon aria-hidden="true" />
+                  {exchange.employees} {t("employees")}
+                </p>
+              )}
+              {exchange.countries && (
+                <p className={styles.infoValue}>
+                  <WorldIcon aria-hidden="true" />
+                  {exchange.countries} {t("countries")}
+                </p>
+              )}
+              {exchange.kyc && (
+                <p className={styles.infoValue}>
+                  <FingerprintIcon aria-hidden="true" />
+                  {t("has")} {exchange.kyc}
+                </p>
+              )}
             </div>
             <div className={styles.reviewsContainer}>
               <div className={styles.reviews}>
                 <p className={styles.reviewsAverage}>{exchange.rating}</p>
                 <StarsViewer reviewAverage={exchange.rating} />
-                <p className={styles.reviewsCounter}>({exchange.reviewCount})</p>
+                <p className={styles.reviewsCounter}>
+                  ({exchange.reviewCount})
+                </p>
               </div>
-              <button onClick={() => setShowReviewsPopup(true)} className={styles.reviewsButton}>{t('see reviews')}</button>
+              <button
+                onClick={() => setShowReviewsPopup(true)}
+                className={styles.reviewsButton}
+              >
+                {t("see reviews")}
+              </button>
             </div>
             <div className={styles.sliderContainer}>
-              <p className={styles.label}>{t('networks')}</p>
-              <Slider elements={exchange.networks} />
+              <p className={styles.label}>{t("networks")}</p>
+              <Slider
+                elements={exchangeNetworks?.map((network) => network.name)}
+              />
             </div>
             <div className={styles.comission}>
-              <p className={styles.label}>{t('commission')}</p>
+              <p className={styles.label}>{t("commission")}</p>
               <div className={styles.comissionValues}>
                 <p className={styles.comissionValue}>
-                  <span className={styles.comissionValueHighlight}>{exchange.commission.buying}</span> {t('buying')}
+                  <span className={styles.comissionValueHighlight}>
+                    {exchange.commission.buying}
+                  </span>{" "}
+                  {t("buying")}
                 </p>
                 <p className={styles.comissionValue}>
-                  <span className={styles.comissionValueHighlight}>{exchange.commission.selling}</span> {t('selling')}
+                  <span className={styles.comissionValueHighlight}>
+                    {exchange.commission.selling}
+                  </span>{" "}
+                  {t("selling")}
                 </p>
               </div>
             </div>
-            <div className={styles.sliderContainer} style={{ paddingBottom: '0' }}>
-              <p className={styles.label}>{t('payment methods')}</p>
-              <Slider elements={exchange.paymentMethods.map(paymentMethod => t(`payment_methods.${paymentMethod}`))} />
+            <div
+              className={styles.sliderContainer}
+              style={{ paddingBottom: "0" }}
+            >
+              <p className={styles.label}>{t("payment methods")}</p>
+              <Slider
+                elements={exchangePayments?.map((paymentMethod) =>
+                  t(`payment_methods.${paymentMethod}`)
+                )}
+              />
             </div>
           </div>
           <div className={styles.bottom}>
             <div className={styles.socialMedia}>
               <p className={styles.hiddenLabel}>Socials</p>
               <div className={styles.icons}>
-                <a href={exchange.xUrl}><XIcon /></a>
-                <a href={exchange.instagramUrl}><InstagramIcon /></a>
-                <a href={exchange.linkedinUrl}><LinkedinIcon /></a>
+                <a href={exchange?.x_link}>
+                  <XIcon />
+                </a>
+                <a href={exchange?.instagram_link}>
+                  <InstagramIcon />
+                </a>
+                <a href={exchange?.linkedin_link}>
+                  <LinkedinIcon />
+                </a>
               </div>
             </div>
             <div className={styles.buttons}>
-              <button onClick={() => setShowRateExchangePopup(true)} className={styles.rateExchange}>{t('rate exchange')}</button>
-              <a href={'https://binance.com'} target="_blank" rel="noopener noreferrer" className={styles.openExchange}>
-                {t('open')} {exchange.name}
+              <button
+                onClick={() => setShowRateExchangePopup(true)}
+                className={styles.rateExchange}
+              >
+                {t("rate exchange")}
+              </button>
+              <a
+                href={"https://binance.com"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.openExchange}
+              >
+                {t("open")} {exchange.name}
               </a>
               <div className={styles.navigationButtons}>
-                <button 
-                  onClick={goToPreviousExchange} 
-                  disabled={isFirstExchange} 
-                  className={`${styles.navButton} ${isFirstExchange && styles.navButtonDisabled}`}
+                <button
+                  onClick={goToPreviousExchange}
+                  disabled={isFirstExchange}
+                  className={`${styles.navButton} ${
+                    isFirstExchange && styles.navButtonDisabled
+                  }`}
                 >
-                  <ArrowIcon className={styles.arrowIcon} /><p className={styles.mobileNavText}>{t('previous')}</p>
+                  <ArrowIcon className={styles.arrowIcon} />
+                  <p className={styles.mobileNavText}>{t("previous")}</p>
                 </button>
-                <button 
-                  onClick={goToNextExchange} 
-                  disabled={isLastExchange} 
-                  className={`${styles.navButton} ${isLastExchange && styles.navButtonDisabled}`}
+                <button
+                  onClick={goToNextExchange}
+                  disabled={isLastExchange}
+                  className={`${styles.navButton} ${
+                    isLastExchange && styles.navButtonDisabled
+                  }`}
                 >
-                  <p className={styles.mobileNavText}>{t('next')}</p><ArrowIcon className={styles.arrowIconRight} />
+                  <p className={styles.mobileNavText}>{t("next")}</p>
+                  <ArrowIcon className={styles.arrowIconRight} />
                 </button>
               </div>
             </div>
           </div>
 
-          <ExchangeReviewsPopup 
-            showPopup={showReviewsPopup} 
+          <ExchangeReviewsPopup
+            showPopup={showReviewsPopup}
             setShowPopup={setShowReviewsPopup}
             exchange={exchange}
             removeBackground={true}
           />
-          <RateExchangePopup 
-            showPopup={showRateExchangePopup} 
+          <RateExchangePopup
+            showPopup={showRateExchangePopup}
             setShowPopup={setShowRateExchangePopup}
             logo={exchange.logo}
             exchange={exchange.name}
           />
         </>
       </PopupSkeleton>
-    )
+    );
   }
 
-  return null
-}
+  return null;
+};
 
-export default ExchangeDetailsPopup
+export default ExchangeDetailsPopup;

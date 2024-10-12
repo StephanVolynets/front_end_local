@@ -294,7 +294,6 @@ const Dashboard = () => {
     if (socket) {
       socket.on("message", (data) => {
         updateSocketExchanges(data);
-        console.log("Received message socket.io:", data);
       });
     }
 
@@ -304,8 +303,6 @@ const Dashboard = () => {
       }
     };
   }, [socket, updateSocketExchanges]);
-
-  console.log("socketExchanges", socketExchanges);
 
   return (
     <>

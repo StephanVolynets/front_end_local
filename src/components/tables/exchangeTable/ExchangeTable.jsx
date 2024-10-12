@@ -11,11 +11,14 @@ import SortArrow from "@/components/icons/sortArrow";
 import ExchangeDetailsPopup from "@/components/popups/exchangeDetailsPopup/ExchangeDetailsPopup";
 import InfoIcon from "@/components/icons/infoIcon";
 import { cryptoNameToSymbol } from "@/utils/cryptoNameToSymbol";
+import axios from "axios";
 
 const ExchangeTable = ({ exchanges, cryptoName }) => {
   const { t } = useTranslation();
   const [pairSymbol, setPairSymbol] = useState(null);
   const [exchangeDetails, setExchangeDetails] = useState({});
+  const [exchangePayments, setExchangePayments] = useState({});
+  const [exchangeNetworks, setExchangeNetworks] = useState({});
   const supabase = createClientComponentClient();
 
   const [sortState, setSortState] = useState({
@@ -43,44 +46,48 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
   const getExchangeDetails = async (index) => {
     const exchangeName = exchanges[index].exchange;
 
-    if (!exchangeDetails[exchangeName]) {
-      const { data, error } = await supabase
-        .from("exchanges")
-        .select(
-          `
-          id,
-          exchange_details (
-            date_founded,
-            company_country,
-            monthly_active_users,
-            range_of_employees,
-            countries_available_in,
-            states_available_in,
-            commission_for_buying,
-            commission_for_selling,
-            has_kyc,
-            is_anchor,
-            x_link,
-            instagram_link,
-            linkedin_link,
-          )
-        `
-        )
-        .eq("name", exchangeName)
-        .single();
-
-      if (error) {
-        console.error("Error fetching exchange details:", error);
-      } else if (data) {
-        console.log("THE DETAILS", data);
-        setExchangeDetails((prevDetails) => ({
-          ...prevDetails,
-          [exchangeName]: data.exchange_details,
-        }));
-      }
-    }
-
-    setSelectedExchangeIndex(index);
+    axios
+      .get(
+        process.env.NEXT_PUBLIC_API_BASE_URL +
+          `/exchange-details/details?name=${exchangeName}`,
+        {
+          headers: {
+            "X-API-Key": process.env.NEXT_PUBLIC_BACKEND_API_KEY,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("exchange details", res.data);
+        setExchangeDetails(res.data);
+      });
+    axios
+      .get(
+        process.env.NEXT_PUBLIC_API_BASE_URL +
+          `/exchange-details/payment-methods?name=${exchangeName}`,
+        {
+          headers: {
+            "X-API-Key": process.env.NEXT_PUBLIC_BACKEND_API_KEY,
+          },
+        }
+      )
+      .then((res) => {
+        setExchangePayments(res.data);
+        setSelectedExchangeIndex(index);
+      });
+    axios
+      .get(
+        process.env.NEXT_PUBLIC_API_BASE_URL +
+          `/exchange-networks/${exchangeName}`,
+        {
+          headers: {
+            "X-API-Key": process.env.NEXT_PUBLIC_BACKEND_API_KEY,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("exchange networks", res.data);
+        setExchangeNetworks(res.data);
+      });
   };
 
   const goToPreviousExchange = () => {
@@ -198,35 +205,35 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
         </tbody>
       </table>
 
-      {selectedExchangeIndex !== null && (
-        <ExchangeDetailsPopup
-          showPopup={selectedExchangeIndex !== null}
-          setShowPopup={() => setSelectedExchangeIndex(null)}
-          exchange={{
-            ...exchanges[selectedExchangeIndex],
-            rating: generateRandomRating(),
-            spread: calculateSpread(
-              exchanges[selectedExchangeIndex].buyPrice,
-              exchanges[selectedExchangeIndex].sellPrice
-            ).toFixed(2),
-            reviewCount: Math.floor(Math.random() * 1000),
-            logo: `/img/exchanges/${exchanges[selectedExchangeIndex].exchange}.png`,
-            ...exchangeDetails[exchanges[selectedExchangeIndex].exchange],
-            commission: {
-              buying:
-                exchangeDetails[exchanges[selectedExchangeIndex].exchange]
-                  ?.commission_buying || "0.1%",
-              selling:
-                exchangeDetails[exchanges[selectedExchangeIndex].exchange]
-                  ?.commission_selling || "0.1%",
-            },
-          }}
-          goToPreviousExchange={goToPreviousExchange}
-          goToNextExchange={goToNextExchange}
-          isFirstExchange={selectedExchangeIndex === 0}
-          isLastExchange={selectedExchangeIndex === exchanges.length - 1}
-        />
-      )}
+      {selectedExchangeIndex !== null &&
+        !!exchangeDetails &&
+        !!exchangeNetworks && (
+          <ExchangeDetailsPopup
+            showPopup={selectedExchangeIndex !== null}
+            setShowPopup={() => setSelectedExchangeIndex(null)}
+            exchange={{
+              ...exchanges[selectedExchangeIndex],
+              rating: generateRandomRating(),
+              spread: calculateSpread(
+                exchanges[selectedExchangeIndex].buyPrice,
+                exchanges[selectedExchangeIndex].sellPrice
+              ).toFixed(2),
+              reviewCount: Math.floor(Math.random() * 1000),
+              logo: `/img/exchanges/${exchanges[selectedExchangeIndex].exchange}.png`,
+              ...exchangeDetails,
+              commission: {
+                buying: `${exchangeDetails?.commission_for_buying || "0.1"}%`,
+                selling: `${exchangeDetails?.commission_for_selling || "0.1"}%`,
+              },
+            }}
+            goToPreviousExchange={goToPreviousExchange}
+            goToNextExchange={goToNextExchange}
+            isFirstExchange={selectedExchangeIndex === 0}
+            isLastExchange={selectedExchangeIndex === exchanges.length - 1}
+            exchangePayments={exchangePayments}
+            exchangeNetworks={exchangeNetworks}
+          />
+        )}
     </>
   );
 };

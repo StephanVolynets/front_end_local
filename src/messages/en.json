@@ -43,7 +43,9 @@
     "credit_card": "Credit Card",
     "debit_card": "Debit Card",
     "bank_transfer": "Bank Transfer",
-    "crypto_wallet": "Crypto Wallet"
+    "crypto_wallet": "Crypto Wallet",
+    "paypal": "PayPal",
+    "wire_transfer": "Wire Transfer"
   },
 
   "most recent": "Most recent",

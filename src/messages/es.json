@@ -43,7 +43,9 @@
     "credit_card": "Tarjeta de Crédito",
     "debit_card": "Tarjeta de Débito",
     "bank_transfer": "Transferencia Bancaria",
-    "crypto_wallet": "Billetera Cripto"
+    "crypto_wallet": "Billetera Cripto",
+    "paypal": "PayPal",
+    "wire_transfer": "Transferencia por Wire"
   },
 
   "most recent": "Más reciente",
@@ -86,7 +88,7 @@
   "buy price": "Precio de compra",
   "spread": "Diferencial",
   "sell price": "Precio de venta",
-  
+
   "privacy policy title": "POLÍTICA DE PRIVACIDAD",
   "privacy policy subtitle": "Última actualización el 14 de septiembre de 2024",
   "privacy policy paragraph one": "Este Aviso de Privacidad para Silicore LLC (operando como Silicore) (\"<0>nosotros</0>\", \"<0>nos</0>\" o \"<0>nuestro</0>\"), describe cómo y por qué podríamos acceder, recopilar, almacenar, usar y/o compartir (\"<0>procesar</0>\") tu información personal cuando usas nuestros servicios (\"<0>Servicios</0>\"), incluyendo cuando:",
