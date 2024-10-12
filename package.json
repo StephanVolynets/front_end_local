@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
     "i18next": "^23.15.1",
     "next": "^14.0.4",
     "react": "^18.2.0",

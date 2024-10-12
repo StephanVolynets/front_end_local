@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./ExchangeTable.module.css";
-
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import ExchangeRow from "@/components/tables/rows/Exchange";
 import NoResults from "@/components/tables/noResults/NoResults";
@@ -15,6 +15,8 @@ import { cryptoNameToSymbol } from "@/utils/cryptoNameToSymbol";
 const ExchangeTable = ({ exchanges, cryptoName }) => {
   const { t } = useTranslation();
   const [pairSymbol, setPairSymbol] = useState(null);
+  const [exchangeDetails, setExchangeDetails] = useState({});
+  const supabase = createClientComponentClient();
 
   const [sortState, setSortState] = useState({
     rating: null,
@@ -36,6 +38,49 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
       newState[column] = prevState[column] === direction ? null : direction;
       return newState;
     });
+  };
+
+  const getExchangeDetails = async (index) => {
+    const exchangeName = exchanges[index].exchange;
+
+    if (!exchangeDetails[exchangeName]) {
+      const { data, error } = await supabase
+        .from("exchanges")
+        .select(
+          `
+          id,
+          exchange_details (
+            date_founded,
+            company_country,
+            monthly_active_users,
+            range_of_employees,
+            countries_available_in,
+            states_available_in,
+            commission_for_buying,
+            commission_for_selling,
+            has_kyc,
+            is_anchor,
+            x_link,
+            instagram_link,
+            linkedin_link,
+          )
+        `
+        )
+        .eq("name", exchangeName)
+        .single();
+
+      if (error) {
+        console.error("Error fetching exchange details:", error);
+      } else if (data) {
+        console.log("THE DETAILS", data);
+        setExchangeDetails((prevDetails) => ({
+          ...prevDetails,
+          [exchangeName]: data.exchange_details,
+        }));
+      }
+    }
+
+    setSelectedExchangeIndex(index);
   };
 
   const goToPreviousExchange = () => {
@@ -142,7 +187,9 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
                       reviewCount: Math.floor(Math.random() * 1000),
                       logo: `/img/exchanges/${exchange.exchange}.png`,
                     }}
-                    onClick={() => setSelectedExchangeIndex(index)}
+                    onClick={() => {
+                      getExchangeDetails(index);
+                    }}
                   />
                 );
               }
@@ -163,35 +210,15 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
               exchanges[selectedExchangeIndex].sellPrice
             ).toFixed(2),
             reviewCount: Math.floor(Math.random() * 1000),
-            logo: "/img/exchanges/binance.png",
-            foundedIn: "2017",
-            place: "Cayman Islands",
-            employees: "12,000",
-            kyc: "KYC",
-            users: "128M+",
-            countries: "140+",
-            xUrl: "https://x.com/binance",
-            instagramUrl: "https://instagram.com/binance",
-            linkedinUrl: "https://linkedin.com/binance",
-            networks: [
-              "Polygon (MATIC)",
-              "Ethereum (ETH)",
-              "Binance (BSC)",
-              "Avalanche (AVAX)",
-              "Solana (SOL)",
-              "Cardano (ADA)",
-              "Polkadot (DOT)",
-              "Chainlink (LINK)",
-            ],
-            paymentMethods: [
-              "credit_card",
-              "debit_card",
-              "bank_transfer",
-              "crypto_wallet",
-            ],
+            logo: `/img/exchanges/${exchanges[selectedExchangeIndex].exchange}.png`,
+            ...exchangeDetails[exchanges[selectedExchangeIndex].exchange],
             commission: {
-              buying: "0.1%",
-              selling: "0.1%",
+              buying:
+                exchangeDetails[exchanges[selectedExchangeIndex].exchange]
+                  ?.commission_buying || "0.1%",
+              selling:
+                exchangeDetails[exchanges[selectedExchangeIndex].exchange]
+                  ?.commission_selling || "0.1%",
             },
           }}
           goToPreviousExchange={goToPreviousExchange}
