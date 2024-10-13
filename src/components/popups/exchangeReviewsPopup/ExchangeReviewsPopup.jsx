@@ -89,7 +89,7 @@ const ExchangeReviewsPopup = ({
             showPopup={showRateExchangePopup}
             setShowPopup={setShowRateExchangePopup}
             logo={exchange.logo}
-            exchange={exchange.name}
+            exchange={exchange.exchange}
           />
         </>
       </PopupSkeleton>

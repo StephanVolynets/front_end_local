@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
             const user = session?.user;
             if (user) {
               const existingUser = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/user-with-email?email=${user.email}`,
+                `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/user-with-email?email=${user.email}`,
                 {
                   headers: {
                     "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
               if (!existingUser.data) {
                 const insertUserResponse = await axios.post(
-                  `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/user-with-email`,
+                  `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/user-with-email`,
                   {
                     email: user.email,
                     username: user.user_metadata.full_name,

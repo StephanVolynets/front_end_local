@@ -68,9 +68,7 @@ const ExchangeDetailsPopup = ({
     if (exchange.exchange) {
       getExchangeReviews(exchange.exchange);
     }
-  }, [exchange.exchange]);
-
-  console.log("showPopup", showPopup);
+  }, [exchange.exchange, showReviewsPopup]);
 
   if (showPopup) {
     return (
@@ -144,7 +142,11 @@ const ExchangeDetailsPopup = ({
             <div className={styles.sliderContainer}>
               <p className={styles.label}>{t("networks")}</p>
               <Slider
-                elements={exchangeNetworks?.map((network) => network.name)}
+                elements={
+                  exchangeNetworks && exchangeNetworks.length > 0
+                    ? exchangeNetworks?.map((network) => network.name)
+                    : []
+                }
               />
             </div>
             <div className={styles.comission}>
@@ -242,7 +244,8 @@ const ExchangeDetailsPopup = ({
             showPopup={showRateExchangePopup}
             setShowPopup={setShowRateExchangePopup}
             logo={exchange.logo}
-            exchange={exchange.name}
+            exchange={exchange.exchange}
+            getExchangeReviews={getExchangeReviews}
           />
         </>
         <LoginPopup
