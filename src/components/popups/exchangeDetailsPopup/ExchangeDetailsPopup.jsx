@@ -22,6 +22,8 @@ import ExchangeReviewsPopup from "@/components/popups/exchangeReviewsPopup/Excha
 import RateExchangePopup from "@/components/popups/rateExchangePopup/RateExchangePopup";
 import ArrowIcon from "@/components/icons/arrowIcon";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
+import LoginPopup from "../loginPopup/LoginPopup";
 
 const ExchangeDetailsPopup = ({
   showPopup,
@@ -35,10 +37,12 @@ const ExchangeDetailsPopup = ({
   exchangeNetworks,
 }) => {
   const { t } = useTranslation();
+  const { user } = useAuth();
 
   const [showReviewsPopup, setShowReviewsPopup] = useState(false);
   const [showRateExchangePopup, setShowRateExchangePopup] = useState(false);
   const [exchangeReviews, setExchangeReviews] = useState([]);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   const getExchangeReviews = async (exchangeName) => {
     const res = await axios.get(
@@ -52,13 +56,21 @@ const ExchangeDetailsPopup = ({
     setExchangeReviews(res.data);
   };
 
+  const handleRateExchange = () => {
+    if (user) {
+      setShowRateExchangePopup(true);
+    } else {
+      setShowLoginPopup(true);
+    }
+  };
+
   useEffect(() => {
     if (exchange.exchange) {
       getExchangeReviews(exchange.exchange);
     }
   }, [exchange.exchange]);
 
-  console.log(exchangeReviews);
+  console.log("showPopup", showPopup);
 
   if (showPopup) {
     return (
@@ -181,7 +193,7 @@ const ExchangeDetailsPopup = ({
             </div>
             <div className={styles.buttons}>
               <button
-                onClick={() => setShowRateExchangePopup(true)}
+                onClick={() => handleRateExchange()}
                 className={styles.rateExchange}
               >
                 {t("rate exchange")}
@@ -233,6 +245,10 @@ const ExchangeDetailsPopup = ({
             exchange={exchange.name}
           />
         </>
+        <LoginPopup
+          showPopup={showLoginPopup}
+          setShowPopup={setShowLoginPopup}
+        />
       </PopupSkeleton>
     );
   }
