@@ -130,12 +130,12 @@ const GoogleButton = () => {
 
   return (
     <button
-      onClick={authenticateWithOAuth}
+      onClick={user ? handleLogout : authenticateWithOAuth}
       className={styles.googleButton}
       type="button"
     >
       {user ? (
-        <button onClick={handleLogout}>Logout</button>
+        <span>Logout</span>
       ) : (
         <>
           <GoogleIcon className={styles.googleIcon} aria-hidden="true" />
