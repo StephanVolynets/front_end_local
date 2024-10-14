@@ -19,6 +19,7 @@ import MainCryptosPopup from "@/components/popups/mainCryptosPopup/MainCryptosPo
 import FiltersPopup from "@/components/popups/filtersPopup/FiltersPopup";
 import ExchangeTable from "@/components/tables/exchangeTable/ExchangeTable";
 import { useSocket } from "@/context/SocketContext";
+import axios from "axios";
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -31,6 +32,7 @@ const Dashboard = () => {
   const [selectedFiat, setSelectedFiat] = useState(1);
   const [amount, setAmount] = useState("");
   const [socketExchanges, setSocketExchanges] = useState([]);
+  const [exchangeReviews, setExchangeReviews] = useState([]);
 
   const exchanges = [
     // exchanges example data for table
@@ -304,6 +306,18 @@ const Dashboard = () => {
     };
   }, [socket, updateSocketExchanges]);
 
+  useEffect(() => {
+    axios
+      .get(process.env.NEXT_PUBLIC_API_BASE_URL + "/ratings/average", {
+        headers: {
+          "X-API-KEY": process.env.NEXT_PUBLIC_BACKEND_API_KEY,
+        },
+      })
+      .then((res) => {
+        setExchangeReviews(res.data);
+      });
+  }, []);
+
   return (
     <>
       <TopBar />
@@ -370,6 +384,7 @@ const Dashboard = () => {
           <ExchangeTable
             exchanges={socketExchanges || exchanges}
             cryptoName={cryptos[0].name}
+            exchangeReviews={exchangeReviews}
           />
         </div>
         <Carrousel invertDots={true} />

@@ -13,7 +13,7 @@ import InfoIcon from "@/components/icons/infoIcon";
 import { cryptoNameToSymbol } from "@/utils/cryptoNameToSymbol";
 import axios from "axios";
 
-const ExchangeTable = ({ exchanges, cryptoName }) => {
+const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
   const { t } = useTranslation();
   const [pairSymbol, setPairSymbol] = useState(null);
   const [exchangeDetails, setExchangeDetails] = useState({});
@@ -107,9 +107,12 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
     return ((sellPrice - buyPrice) / buyPrice) * 100;
   };
 
-  // generate random rating (for now)
-  const generateRandomRating = () => {
-    return (Math.random() * 4 + 1).toFixed(1);
+  // function to get the rating for an exchange
+  const getExchangeRating = (exchangeName) => {
+    const review = exchangeReviews.find(
+      (review) => review.name.toLowerCase() === exchangeName.toLowerCase()
+    );
+    return review ? review.average : 0;
   };
 
   useEffect(() => {
@@ -186,12 +189,17 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
                     key={exchange.exchange + index}
                     exchange={{
                       ...exchange,
-                      rating: generateRandomRating(),
+                      rating: getExchangeRating(exchange.exchange),
                       spread: calculateSpread(
                         exchange.buyPrice,
                         exchange.sellPrice
                       ).toFixed(2),
-                      reviewCount: Math.floor(Math.random() * 1000),
+                      reviewCount:
+                        exchangeReviews.find(
+                          (review) =>
+                            review.name.toLowerCase() ===
+                            exchange.exchange.toLowerCase()
+                        )?.count || 0,
                       logo: `/img/exchanges/${exchange.exchange}.png`,
                     }}
                     onClick={() => {
@@ -213,12 +221,19 @@ const ExchangeTable = ({ exchanges, cryptoName }) => {
             setShowPopup={() => setSelectedExchangeIndex(null)}
             exchange={{
               ...exchanges[selectedExchangeIndex],
-              rating: generateRandomRating(),
+              rating: getExchangeRating(
+                exchanges[selectedExchangeIndex].exchange
+              ),
               spread: calculateSpread(
                 exchanges[selectedExchangeIndex].buyPrice,
                 exchanges[selectedExchangeIndex].sellPrice
               ).toFixed(2),
-              reviewCount: Math.floor(Math.random() * 1000),
+              reviewCount:
+                exchangeReviews.find(
+                  (review) =>
+                    review.name.toLowerCase() ===
+                    exchanges[selectedExchangeIndex].exchange.toLowerCase()
+                )?.count || 0,
               logo: `/img/exchanges/${exchanges[selectedExchangeIndex].exchange}.png`,
               ...exchangeDetails,
               commission: {
