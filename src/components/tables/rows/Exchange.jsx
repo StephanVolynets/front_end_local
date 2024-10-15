@@ -41,7 +41,17 @@ const ExchangeRow = ({ exchange, onClick }) => {
           </p>
         </td>
         <td className={styles.column3} data-label="Spread">
-          <p className={styles.spread}>{exchange?.spread}%</p>
+          <p
+            className={`${
+              exchange?.spread > 0
+                ? styles.highSpread
+                : exchange?.spread < 0
+                ? styles.lowSpread
+                : styles.spread
+            }`}
+          >
+            {exchange?.spread}%
+          </p>
         </td>
         <td className={styles.column4} data-label="Sell price">
           <p className={styles.sellPrice}>

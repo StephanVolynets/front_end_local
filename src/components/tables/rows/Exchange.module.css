@@ -2,7 +2,7 @@
   border-top: 1px solid var(--border);
 }
 
-.row:hover{
+.row:hover {
   background-color: var(--input);
   cursor: pointer;
 }
@@ -11,37 +11,39 @@
   padding-right: 10px;
 }
 
-.column1 .column2, .column3, .column4{
+.column1 .column2,
+.column3,
+.column4 {
   padding: 20px 10px 20px 0;
   font-size: 16px;
-  font-family: 'LoyboxRegular';
+  font-family: "LoyboxRegular";
 }
 
-.column1Content{
+.column1Content {
   display: flex;
   gap: 10px;
   align-items: center;
   width: min-content;
 }
 
-.logo{
+.logo {
   width: 30px;
   height: 30px;
 }
 
-.name{
-  font-family: 'ArchivoMedium';
+.name {
+  font-family: "ArchivoMedium";
   font-size: 16px;
   color: var(--primary);
 }
 
-.starsViewer svg{
+.starsViewer svg {
   width: 18px;
   height: 18px;
 }
 
-.rating{
-  font-family: 'AlbertSansSemiBold';
+.rating {
+  font-family: "AlbertSansSemiBold";
   font-size: 14px;
   color: var(--primary);
   margin-left: -5px;
@@ -52,35 +54,44 @@
 
 /* column 2 */
 
-.buyPrice{
-  font-family: 'AlbertSansSemiBold';
+.buyPrice {
+  font-family: "AlbertSansSemiBold";
   font-size: 16px;
   color: var(--primary);
 }
 
 /* column 3 */
 
-.spread{
-  font-family: 'AlbertSansSemiBold';
+.spread,
+.highSpread,
+.lowSpread {
+  font-family: "AlbertSansSemiBold";
   font-size: 16px;
   color: var(--primary);
 }
 
+.highSpread {
+  color: #4bb543;
+}
+
+.lowSpread {
+  color: red;
+}
+
 /* column 4 */
 
-.sellPrice{
-  font-family: 'AlbertSansSemiBold';
+.sellPrice {
+  font-family: "AlbertSansSemiBold";
   font-size: 16px;
   color: var(--primary);
 }
 
 /* column 5 */
 
-.simpleArrowIcon{
+.simpleArrowIcon {
   transform: rotate(-90deg);
 }
 
-.simpleArrowIcon path{
+.simpleArrowIcon path {
   stroke: var(--secondary);
 }
-
