@@ -18,7 +18,7 @@ const LoginButton = () => {
         className={styles.button}
         onClick={() => setShowPopup(!showPopup)}
       >
-        {user ? t("logout") : t("login")}
+        {user ? user?.user_metadata?.full_name.split(" ")[0] : t("login")}
       </button>
       <LoginPopup showPopup={showPopup} setShowPopup={setShowPopup} />
     </>
