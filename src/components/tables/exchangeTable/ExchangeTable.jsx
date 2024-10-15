@@ -112,7 +112,7 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
     const review = exchangeReviews.find(
       (review) => review.name.toLowerCase() === exchangeName.toLowerCase()
     );
-    return review ? review.average : 0;
+    return review ? review?.average : 0;
   };
 
   useEffect(() => {
