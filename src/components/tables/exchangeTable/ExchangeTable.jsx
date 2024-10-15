@@ -94,12 +94,14 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
     setSelectedExchangeIndex((prevIndex) =>
       prevIndex > 0 ? prevIndex - 1 : prevIndex
     );
+    getExchangeDetails(selectedExchangeIndex - 1);
   };
 
   const goToNextExchange = () => {
     setSelectedExchangeIndex((prevIndex) =>
       prevIndex < exchanges.length - 1 ? prevIndex + 1 : prevIndex
     );
+    getExchangeDetails(selectedExchangeIndex + 1);
   };
 
   // calculate spread
