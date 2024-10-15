@@ -75,7 +75,7 @@ const ExchangeDetailsPopup = ({
       <PopupSkeleton
         setShowPopup={setShowPopup}
         logo={exchange.logo}
-        title={exchange.name}
+        title={exchange?.displayName}
         hide={showReviewsPopup || showRateExchangePopup}
       >
         <>
@@ -206,7 +206,7 @@ const ExchangeDetailsPopup = ({
                 rel="noopener noreferrer"
                 className={styles.openExchange}
               >
-                {t("open")} {exchange.name}
+                {t("open")} {exchange?.displayName}
               </a>
               <div className={styles.navigationButtons}>
                 <button

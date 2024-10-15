@@ -253,6 +253,12 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
                 buying: `${exchangeDetails?.commission_for_buying || "0.1"}%`,
                 selling: `${exchangeDetails?.commission_for_selling || "0.1"}%`,
               },
+              displayName:
+                exchangeReviews.find(
+                  (review) =>
+                    review.name.toLowerCase() ===
+                    exchanges[selectedExchangeIndex]?.exchange.toLowerCase()
+                )?.display_name || exchanges[selectedExchangeIndex]?.exchange,
             }}
             goToPreviousExchange={goToPreviousExchange}
             goToNextExchange={goToNextExchange}
