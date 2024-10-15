@@ -3,7 +3,6 @@
 import styles from "./ExchangeTable.module.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import ExchangeRow from "@/components/tables/rows/Exchange";
 import NoResults from "@/components/tables/noResults/NoResults";
@@ -19,7 +18,6 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
   const [exchangeDetails, setExchangeDetails] = useState({});
   const [exchangePayments, setExchangePayments] = useState({});
   const [exchangeNetworks, setExchangeNetworks] = useState({});
-  const supabase = createClientComponentClient();
 
   const [sortState, setSortState] = useState({
     rating: null,
@@ -261,6 +259,12 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
                     review.name.toLowerCase() ===
                     exchanges[selectedExchangeIndex]?.exchange.toLowerCase()
                 )?.display_name || exchanges[selectedExchangeIndex]?.exchange,
+              exchangeUrl:
+                exchangeReviews.find(
+                  (review) =>
+                    review.name.toLowerCase() ===
+                    exchanges[selectedExchangeIndex]?.exchange.toLowerCase()
+                )?.exchange_url || "",
             }}
             goToPreviousExchange={goToPreviousExchange}
             goToNextExchange={goToNextExchange}

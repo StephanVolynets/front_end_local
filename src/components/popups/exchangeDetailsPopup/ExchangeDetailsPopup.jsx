@@ -64,6 +64,8 @@ const ExchangeDetailsPopup = ({
     }
   };
 
+  console.log("exchange123", exchange?.exchangeUrl);
+
   useEffect(() => {
     if (exchange.exchange) {
       getExchangeReviews(exchange.exchange);
@@ -201,7 +203,7 @@ const ExchangeDetailsPopup = ({
                 {t("rate exchange")}
               </button>
               <a
-                href={"https://binance.com"}
+                href={exchange?.exchangeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.openExchange}
