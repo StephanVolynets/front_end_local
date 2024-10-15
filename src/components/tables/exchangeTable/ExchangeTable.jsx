@@ -184,6 +184,13 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
           ) : (
             exchanges?.map((exchange, index) => {
               if (exchange?.symbol === pairSymbol) {
+                const displayName =
+                  exchangeReviews.find(
+                    (review) =>
+                      review.name.toLowerCase() ===
+                      exchange.exchange.toLowerCase()
+                  )?.display_name || exchange.exchange;
+                console.log("displayName", displayName);
                 return (
                   <ExchangeRow
                     key={exchange.exchange + index}
@@ -200,6 +207,12 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
                             review.name.toLowerCase() ===
                             exchange.exchange.toLowerCase()
                         )?.count || 0,
+                      displayName:
+                        exchangeReviews.find(
+                          (review) =>
+                            review.name.toLowerCase() ===
+                            exchange.exchange.toLowerCase()
+                        )?.display_name || exchange.exchange,
                       logo: `/img/exchanges/${exchange.exchange}.png`,
                     }}
                     onClick={() => {
