@@ -46,7 +46,7 @@ const ExchangeDetailsPopup = ({
 
   const getExchangeReviews = async (exchangeName) => {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/ratings/${exchangeName}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/ratings/exchange/${exchangeName}`,
       {
         headers: {
           "X-API-Key": process.env.NEXT_PUBLIC_BACKEND_API_KEY,
