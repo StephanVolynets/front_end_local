@@ -34,210 +34,6 @@ const Dashboard = () => {
   const [socketExchanges, setSocketExchanges] = useState([]);
   const [exchangeReviews, setExchangeReviews] = useState([]);
 
-  const exchanges = [
-    // exchanges example data for table
-    {
-      name: "Binance",
-      logo: "/img/exchanges/binance.png",
-      rating: 4.2,
-      reviewCount: 320,
-      buyPrice: 65786.4,
-      sellPrice: 65786.4,
-      spread: 1.62,
-      foundedIn: "2017",
-      place: "Cayman Islands",
-      employees: "12,000",
-      kyc: "KYC",
-      users: "128M+",
-      countries: "140+",
-      actualprice: 65286.4,
-      lastprice: 65750.6,
-      xUrl: "https://x.com/binance",
-      instagramUrl: "https://instagram.com/binance",
-      linkedinUrl: "https://linkedin.com/binance",
-      networks: [
-        "Polygon (MATIC)",
-        "Ethereum (ETH)",
-        "Binance (BSC)",
-        "Avalanche (AVAX)",
-        "Solana (SOL)",
-        "Cardano (ADA)",
-        "Polkadot (DOT)",
-        "Chainlink (LINK)",
-      ],
-      paymentMethods: [
-        "credit_card",
-        "debit_card",
-        "bank_transfer",
-        "crypto_wallet",
-      ],
-      commission: {
-        buying: "0.1%",
-        selling: "0.1%",
-      },
-    },
-    {
-      name: "Binance",
-      logo: "/img/exchanges/binance.png",
-      rating: 2.1,
-      reviewCount: 23,
-      buyPrice: 65780.4,
-      sellPrice: 65780.4,
-      spread: 1.6,
-      foundedIn: "2017",
-      place: "Cayman Islands",
-      employees: "12,000",
-      kyc: "KYC",
-      users: "128M+",
-      countries: "140+",
-      actualprice: 65280.4,
-      lastprice: 65740.6,
-      xUrl: "https://x.com/binance",
-      instagramUrl: "https://instagram.com/binance",
-      linkedinUrl: "https://linkedin.com/binance",
-      networks: [
-        "Polygon (MATIC)",
-        "Ethereum (ETH)",
-        "Binance (BSC)",
-        "Avalanche (AVAX)",
-        "Solana (SOL)",
-        "Cardano (ADA)",
-        "Polkadot (DOT)",
-        "Chainlink (LINK)",
-      ],
-      paymentMethods: [
-        "credit_card",
-        "debit_card",
-        "bank_transfer",
-        "crypto_wallet",
-      ],
-      commission: {
-        buying: "0.1%",
-        selling: "0.1%",
-      },
-    },
-    {
-      name: "Binance",
-      logo: "/img/exchanges/binance.png",
-      rating: 3.9,
-      reviewCount: 123,
-      buyPrice: 65790.4,
-      sellPrice: 65790.4,
-      spread: 1.65,
-      foundedIn: "2017",
-      place: "Cayman Islands",
-      employees: "12,000",
-      kyc: "KYC",
-      users: "128M+",
-      countries: "140+",
-      actualprice: 65290.4,
-      lastprice: 65760.6,
-      xUrl: "https://x.com/binance",
-      instagramUrl: "https://instagram.com/binance",
-      linkedinUrl: "https://linkedin.com/binance",
-      networks: [
-        "Polygon (MATIC)",
-        "Ethereum (ETH)",
-        "Binance (BSC)",
-        "Avalanche (AVAX)",
-        "Solana (SOL)",
-        "Cardano (ADA)",
-        "Polkadot (DOT)",
-        "Chainlink (LINK)",
-      ],
-      paymentMethods: [
-        "credit_card",
-        "debit_card",
-        "bank_transfer",
-        "crypto_wallet",
-      ],
-      commission: {
-        buying: "0.1%",
-        selling: "0.1%",
-      },
-    },
-    {
-      name: "Binance",
-      logo: "/img/exchanges/binance.png",
-      rating: 1.7,
-      reviewCount: 31,
-      buyPrice: 65795.4,
-      sellPrice: 65795.4,
-      spread: 1.68,
-      foundedIn: "2017",
-      place: "Cayman Islands",
-      employees: "12,000",
-      kyc: "KYC",
-      users: "128M+",
-      countries: "140+",
-      actualprice: 65295.4,
-      lastprice: 65770.6,
-      xUrl: "https://x.com/binance",
-      instagramUrl: "https://instagram.com/binance",
-      linkedinUrl: "https://linkedin.com/binance",
-      networks: [
-        "Polygon (MATIC)",
-        "Ethereum (ETH)",
-        "Binance (BSC)",
-        "Avalanche (AVAX)",
-        "Solana (SOL)",
-        "Cardano (ADA)",
-        "Polkadot (DOT)",
-        "Chainlink (LINK)",
-      ],
-      paymentMethods: [
-        "credit_card",
-        "debit_card",
-        "bank_transfer",
-        "crypto_wallet",
-      ],
-      commission: {
-        buying: "0.1%",
-        selling: "0.1%",
-      },
-    },
-    {
-      name: "Binance",
-      logo: "/img/exchanges/binance.png",
-      rating: 4.7,
-      reviewCount: 345,
-      buyPrice: 65800.4,
-      sellPrice: 65800.4,
-      spread: 1.7,
-      foundedIn: "2017",
-      place: "Cayman Islands",
-      employees: "12,000",
-      kyc: "KYC",
-      users: "128M+",
-      countries: "140+",
-      actualprice: 65300.4,
-      lastprice: 65780.6,
-      xUrl: "https://x.com/binance",
-      instagramUrl: "https://instagram.com/binance",
-      linkedinUrl: "https://linkedin.com/binance",
-      networks: [
-        "Polygon (MATIC)",
-        "Ethereum (ETH)",
-        "Binance (BSC)",
-        "Avalanche (AVAX)",
-        "Solana (SOL)",
-        "Cardano (ADA)",
-        "Polkadot (DOT)",
-        "Chainlink (LINK)",
-      ],
-      paymentMethods: [
-        "credit_card",
-        "debit_card",
-        "bank_transfer",
-        "crypto_wallet",
-      ],
-      commission: {
-        buying: "0.1%",
-        selling: "0.1%",
-      },
-    },
-  ];
-
   const cryptos = [
     // cryptos example data for cards
     {
@@ -377,12 +173,17 @@ const Dashboard = () => {
           />
           <p className={styles.cryptoName}>{cryptos[0].name}</p>
           <p className={styles.cryptoExchanges}>
-            {exchanges?.length} exchanges
+            {
+              socketExchanges?.filter(
+                (exchange) => exchange.symbol === "BTCUSDT"
+              )?.length
+            }{" "}
+            exchanges
           </p>
         </div>
         <div className={styles.tableContainer}>
           <ExchangeTable
-            exchanges={socketExchanges || exchanges}
+            exchanges={socketExchanges}
             cryptoName={cryptos[0].name}
             exchangeReviews={exchangeReviews}
           />
