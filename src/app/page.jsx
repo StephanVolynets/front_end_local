@@ -20,11 +20,12 @@ import FiltersPopup from "@/components/popups/filtersPopup/FiltersPopup";
 import ExchangeTable from "@/components/tables/exchangeTable/ExchangeTable";
 import { useSocket } from "@/context/SocketContext";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
 
 const Dashboard = () => {
   const { t } = useTranslation();
   const socket = useSocket();
-
+  const { selectedSymbol } = useAuth();
   const [showMainCryptosPopup, setShowMainCryptosPopup] = useState(false);
   const [showFiltersPopup, setShowFiltersPopup] = useState(false);
 
@@ -54,6 +55,20 @@ const Dashboard = () => {
       name: "Stellar",
       symbol: "XLM",
       logo: "/img/stellar-logo.png",
+      currentPrice: 0.1234,
+      lastPrice: 0.1234,
+    },
+    {
+      name: "Solana",
+      symbol: "SOL",
+      logo: "/img/solana-logo.png",
+      currentPrice: 0.1234,
+      lastPrice: 0.1234,
+    },
+    {
+      name: "Dogecoin",
+      symbol: "DOGE",
+      logo: "/img/dogecoin-logo.png",
       currentPrice: 0.1234,
       lastPrice: 0.1234,
     },
@@ -168,14 +183,20 @@ const Dashboard = () => {
         <div className={styles.selectedCrypto}>
           <img
             className={styles.cryptoLogo}
-            src={cryptos[0].logo}
-            alt={`${cryptos[0].name} logo`}
+            src={
+              cryptos.find((crypto) => crypto.symbol === selectedSymbol).logo
+            }
+            alt={`${
+              cryptos.find((crypto) => crypto.symbol === selectedSymbol).name
+            } logo`}
           />
-          <p className={styles.cryptoName}>{cryptos[0].name}</p>
+          <p className={styles.cryptoName}>
+            {cryptos.find((crypto) => crypto.symbol === selectedSymbol).name}
+          </p>
           <p className={styles.cryptoExchanges}>
             {
               socketExchanges?.filter(
-                (exchange) => exchange.symbol === "BTCUSDT"
+                (exchange) => exchange.symbol === selectedSymbol
               )?.length
             }{" "}
             exchanges
@@ -184,7 +205,7 @@ const Dashboard = () => {
         <div className={styles.tableContainer}>
           <ExchangeTable
             exchanges={socketExchanges}
-            cryptoName={cryptos[0].name}
+            cryptoName={selectedSymbol}
             exchangeReviews={exchangeReviews}
           />
         </div>

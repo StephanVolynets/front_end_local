@@ -7,6 +7,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [selectedSymbol, setSelectedSymbol] = useState("BTC");
 
   useEffect(() => {
     const checkAuthState = async () => {
@@ -92,7 +93,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider
+      value={{ user, setUser, selectedSymbol, setSelectedSymbol }}
+    >
       {children}
     </AuthContext.Provider>
   );

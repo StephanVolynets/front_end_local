@@ -1,8 +1,8 @@
 export const cryptoNameToSymbol = (cryptoName) => {
-  if (cryptoName === "bitcoin") return "BTCUSDT";
-  if (cryptoName === "ethereum") return "ETHUSDT";
-  if (cryptoName === "solana") return "SOLUSDT";
-  if (cryptoName === "stellar") return "XLMUSDT";
-  if (cryptoName === "dogecoin") return "DOGEUSDT";
+  if (cryptoName === "BTC") return "BTCUSDT";
+  if (cryptoName === "ETH") return "ETHUSDT";
+  if (cryptoName === "SOL") return "SOLUSDT";
+  if (cryptoName === "XLM") return "XLMUSDT";
+  if (cryptoName === "DOGE") return "DOGEUSDT";
   else return null;
 };

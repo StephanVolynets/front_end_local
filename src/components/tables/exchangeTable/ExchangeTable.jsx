@@ -116,7 +116,7 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
   };
 
   useEffect(() => {
-    const cryptoSymbol = cryptoNameToSymbol(cryptoName.toLowerCase());
+    const cryptoSymbol = cryptoNameToSymbol(cryptoName.toUpperCase());
     setPairSymbol(cryptoSymbol);
   }, [cryptoName]);
 
@@ -184,13 +184,6 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
           ) : (
             exchanges?.map((exchange, index) => {
               if (exchange?.symbol === pairSymbol) {
-                const displayName =
-                  exchangeReviews.find(
-                    (review) =>
-                      review.name.toLowerCase() ===
-                      exchange.exchange.toLowerCase()
-                  )?.display_name || exchange.exchange;
-                console.log("displayName", displayName);
                 return (
                   <ExchangeRow
                     key={exchange.exchange + index}

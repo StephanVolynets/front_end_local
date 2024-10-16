@@ -1,89 +1,146 @@
-'use client'
+"use client";
 
-import styles from './CryptoFilterDropdown.module.css'
+import styles from "./CryptoFilterDropdown.module.css";
 
-import { useTranslation } from 'react-i18next'
-import React, { useState, useEffect, useRef } from 'react'
+import { useTranslation } from "react-i18next";
+import React, { useState, useEffect, useRef } from "react";
 
-import SimpleArrowIcon from '@/components/icons/simpleArrowIcon'
+import SimpleArrowIcon from "@/components/icons/simpleArrowIcon";
+import { useAuth } from "@/context/AuthContext";
 
 const CryptoFilterDropdown = ({ selectedCrypto, setSelectedCrypto }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const { setSelectedSymbol } = useAuth();
 
-  const [reverseAnimation, setReverseAnimation] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef(null)
+  const [reverseAnimation, setReverseAnimation] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const cryptos = [
-    { id: 1, abbr: 'btc', name: 'Bitcoin', logo: '/img/bitcoin-logo.png' },
-    { id: 2, abbr: 'eth', name: 'Ethereum', logo: '/img/ethereum-logo.png' },
-    { id: 3, abbr: 'xlm', name: 'Stellar', logo: '/img/stellar-logo.png' },
-  ]
-  const [selectedCryptoLocal, setSelectedCryptoLocal] = useState(cryptos.find(c => c.id === selectedCrypto))
-  const [searchTerm, setSearchTerm] = useState('')
+    {
+      id: 1,
+      abbr: "BTC",
+      name: "Bitcoin",
+      logo: "/img/bitcoin-logo.png",
+    },
+    {
+      id: 2,
+      abbr: "ETH",
+      name: "Ethereum",
+      logo: "/img/ethereum-logo.png",
+    },
+    {
+      id: 3,
+      abbr: "XLM",
+      name: "Stellar",
+      logo: "/img/stellar-logo.png",
+    },
+    {
+      id: 3,
+      abbr: "SOL",
+      name: "Solana",
+      logo: "/img/solana-logo.png",
+    },
+    {
+      id: 5,
+      abbr: "DOGE",
+      name: "Dogecoin",
+      logo: "/img/dogecoin-logo.png",
+    },
+  ];
+  const [selectedCryptoLocal, setSelectedCryptoLocal] = useState(
+    cryptos.find((c) => c.id === selectedCrypto)
+  );
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const availableCryptos = cryptos.filter(c => c.id !== selectedCrypto)
+  const availableCryptos = cryptos.filter((c) => c.id !== selectedCrypto);
 
-  const filteredCryptos = availableCryptos.filter(crypto =>
-    crypto.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    crypto.abbr.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredCryptos = availableCryptos.filter(
+    (crypto) =>
+      crypto.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      crypto.abbr.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleOptionClick = (crypto) => {
-    setSelectedCryptoLocal(crypto)
-    setSelectedCrypto(crypto.id)
-    setReverseAnimation(true)
+    setSelectedSymbol(crypto.abbr);
+    setSelectedCryptoLocal(crypto);
+    setSelectedCrypto(crypto.id);
+    setReverseAnimation(true);
     setTimeout(() => {
-      setReverseAnimation(false)
-      setIsOpen(false)
-    }, 150)
-  }
+      setReverseAnimation(false);
+      setIsOpen(false);
+    }, 150);
+  };
+
+  console.log("selectedCryptoLocal", selectedCryptoLocal, selectedCrypto);
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value)
-  }
+    setSearchTerm(event.target.value);
+  };
 
   // close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false)
+        setIsOpen(false);
       }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
+    };
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <button
-        className={`${styles.dropButton} ${isOpen ? styles.dropButtonOpen : ''}`}
+        className={`${styles.dropButton} ${
+          isOpen ? styles.dropButtonOpen : ""
+        }`}
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
         <div className={styles.criptoInfo}>
-          <img className={styles.criptoLogo} src={selectedCryptoLocal.logo} alt="" />
+          <img
+            className={styles.criptoLogo}
+            src={selectedCryptoLocal.logo}
+            alt=""
+          />
           <span className={styles.criptoName}>{selectedCryptoLocal.name}</span>
-          <span className={styles.criptoAbbr}>{selectedCryptoLocal.abbr.toUpperCase()}</span>
+          <span className={styles.criptoAbbr}>
+            {selectedCryptoLocal.abbr.toUpperCase()}
+          </span>
         </div>
-        <SimpleArrowIcon className={`${styles.arrowIcon} ${isOpen ? styles.arrowIconOpen : ''}`} />
+        <SimpleArrowIcon
+          className={`${styles.arrowIcon} ${
+            isOpen ? styles.arrowIconOpen : ""
+          }`}
+        />
       </button>
       {isOpen && (
-        <ul className={`${styles.dropdownContent} ${reverseAnimation ? styles.disabledDropdownContent : ''}`} role="listbox">
+        <ul
+          className={`${styles.dropdownContent} ${
+            reverseAnimation ? styles.disabledDropdownContent : ""
+          }`}
+          role="listbox"
+        >
           <li className={styles.searchContainer}>
             <input
               type="text"
-              placeholder={t('search cryptocurrency')}
+              placeholder={t("search cryptocurrency")}
               value={searchTerm}
               onChange={handleSearchChange}
               className={styles.searchInput}
             />
           </li>
           {filteredCryptos.map((crypto) => (
-            <li key={crypto.id} role="option" className={styles.dropdownSelectContainer} aria-selected={selectedCrypto.id === crypto.id}>
+            <li
+              key={crypto.id}
+              role="option"
+              className={styles.dropdownSelectContainer}
+              aria-selected={selectedCrypto.id === crypto.id}
+            >
               <button
                 className={styles.dropdownSelect}
                 onClick={() => handleOptionClick(crypto)}
@@ -91,14 +148,16 @@ const CryptoFilterDropdown = ({ selectedCrypto, setSelectedCrypto }) => {
               >
                 <img className={styles.criptoLogo} src={crypto.logo} alt="" />
                 <span>{crypto.name}</span>
-                <span className={styles.criptoAbbr}>{crypto.abbr.toUpperCase()}</span>
+                <span className={styles.criptoAbbr}>
+                  {crypto.abbr.toUpperCase()}
+                </span>
               </button>
             </li>
           ))}
         </ul>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default CryptoFilterDropdown
+export default CryptoFilterDropdown;
