@@ -3,6 +3,7 @@
 import styles from "./ExchangeTable.module.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { formatCurrency } from "@/utils/currencyConverter";
 
 import ExchangeRow from "@/components/tables/rows/Exchange";
 import NoResults from "@/components/tables/noResults/NoResults";
@@ -12,7 +13,7 @@ import InfoIcon from "@/components/icons/infoIcon";
 import { cryptoNameToSymbol } from "@/utils/cryptoNameToSymbol";
 import axios from "axios";
 
-const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
+const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews, currency = 'USD' }) => {
   const { t } = useTranslation();
   const [pairSymbol, setPairSymbol] = useState(null);
   const [exchangeDetails, setExchangeDetails] = useState({});
@@ -55,7 +56,6 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
         }
       )
       .then((res) => {
-        console.log("exchange details", res.data);
         setExchangeDetails(res.data);
       });
     axios
@@ -83,7 +83,6 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
         }
       )
       .then((res) => {
-        console.log("exchange networks", res.data);
         setExchangeNetworks(res.data);
       });
   };
@@ -211,6 +210,7 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
                     onClick={() => {
                       getExchangeDetails(index);
                     }}
+                    currency={currency}
                   />
                 );
               }
@@ -265,6 +265,7 @@ const ExchangeTable = ({ exchanges, cryptoName, exchangeReviews }) => {
             isLastExchange={selectedExchangeIndex === exchanges.length - 1}
             exchangePayments={exchangePayments}
             exchangeNetworks={exchangeNetworks}
+            currency={currency}
           />
         )}
     </>
