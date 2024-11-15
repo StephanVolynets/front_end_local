@@ -36,7 +36,7 @@ const CryptoFilterDropdown = ({ selectedCrypto, setSelectedCrypto }) => {
       logo: "/img/stellar-logo.png",
     },
     {
-      id: 3,
+      id: 4,
       abbr: "SOL",
       name: "Solana",
       logo: "/img/solana-logo.png",
@@ -49,7 +49,7 @@ const CryptoFilterDropdown = ({ selectedCrypto, setSelectedCrypto }) => {
     },
   ];
   const [selectedCryptoLocal, setSelectedCryptoLocal] = useState(
-    cryptos.find((c) => c.id === selectedCrypto)
+    cryptos.find((c) => c.id === selectedCrypto) || cryptos[0]
   );
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -71,8 +71,6 @@ const CryptoFilterDropdown = ({ selectedCrypto, setSelectedCrypto }) => {
       setIsOpen(false);
     }, 150);
   };
-
-  console.log("selectedCryptoLocal", selectedCryptoLocal, selectedCrypto);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -139,7 +137,7 @@ const CryptoFilterDropdown = ({ selectedCrypto, setSelectedCrypto }) => {
               key={crypto.id}
               role="option"
               className={styles.dropdownSelectContainer}
-              aria-selected={selectedCrypto.id === crypto.id}
+              aria-selected={selectedCrypto === crypto.id}
             >
               <button
                 className={styles.dropdownSelect}

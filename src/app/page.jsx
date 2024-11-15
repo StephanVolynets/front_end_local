@@ -2,9 +2,11 @@
 
 import styles from "./dashboard.module.css";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { formatThousands } from "@/utils/formatThousands";
+import { convertCurrency, formatCurrency } from "@/utils/currencyConverter";
+import { debounce } from "@/utils/debounce";
 
 import TopBar from "@/components/topBar/TopBar";
 import Carrousel from "@/components/carrousel/Carrousel";
@@ -31,55 +33,52 @@ const Dashboard = () => {
 
   const [selectedCrypto, setSelectedCrypto] = useState(1);
   const [selectedFiat, setSelectedFiat] = useState(1);
+  const [selectedFiatCurrency, setSelectedFiatCurrency] = useState('USD');
   const [amount, setAmount] = useState("");
   const [socketExchanges, setSocketExchanges] = useState([]);
   const [exchangeReviews, setExchangeReviews] = useState([]);
 
-  const cryptos = [
-    // cryptos example data for cards
+  const cryptoPrices = {
+    BTC: { current: 65286.4, last: 65750.6 },
+    ETH: { current: 3456.78, last: 3400.21 },
+    SOL: { current: 124.56, last: 120.34 }
+  };
+
+  const cryptos = useMemo(() => [
     {
       name: "Bitcoin",
       symbol: "BTC",
       logo: "/img/bitcoin-logo.png",
-      currentPrice: 65286.4,
-      lastPrice: 65750.6,
+      currentPrice: cryptoPrices.BTC.current,
+      lastPrice: cryptoPrices.BTC.last,
     },
     {
       name: "Ethereum",
       symbol: "ETH",
       logo: "/img/ethereum-logo.png",
-      currentPrice: 3456.78,
-      lastPrice: 3400.21,
-    },
-    {
-      name: "Stellar",
-      symbol: "XLM",
-      logo: "/img/stellar-logo.png",
-      currentPrice: 0.1234,
-      lastPrice: 0.1234,
+      currentPrice: cryptoPrices.ETH.current,
+      lastPrice: cryptoPrices.ETH.last,
     },
     {
       name: "Solana",
       symbol: "SOL",
       logo: "/img/solana-logo.png",
-      currentPrice: 0.1234,
-      lastPrice: 0.1234,
-    },
-    {
-      name: "Dogecoin",
-      symbol: "DOGE",
-      logo: "/img/dogecoin-logo.png",
-      currentPrice: 0.1234,
-      lastPrice: 0.1234,
-    },
-  ];
+      currentPrice: cryptoPrices.SOL.current,
+      lastPrice: cryptoPrices.SOL.last,
+    }
+  ], []);
+
+  const debouncedAmountUpdate = useCallback(
+    debounce((value) => {
+      setAmount(formatThousands(value));
+    }, 300),
+    []
+  );
 
   const handleAmountChange = (e) => {
     const value = e.target.value.replace(/,/g, "");
-
-    // handle case when there for example user sets a point after some numbers there arent any numbers yet
     if (value === "" || /^\d*\.?\d*$/.test(value) || /^\d+\.$/.test(value)) {
-      setAmount(formatThousands(value));
+      debouncedAmountUpdate(value);
     }
   };
 
@@ -91,14 +90,18 @@ const Dashboard = () => {
           exchange.exchange === newData.exchange
       );
 
+      const convertedData = {
+        ...newData,
+        buyPrice: newData.buyPrice,
+        sellPrice: newData.sellPrice
+      };
+
       if (index !== -1) {
-        // replace the existing object
         const updatedExchanges = [...prevExchanges];
-        updatedExchanges[index] = newData;
+        updatedExchanges[index] = convertedData;
         return updatedExchanges;
       } else {
-        // add the new object
-        return [...prevExchanges, newData];
+        return [...prevExchanges, convertedData];
       }
     });
   }, []);
@@ -129,6 +132,38 @@ const Dashboard = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const currencies = {
+      1: 'USD',
+      2: 'EUR',
+      3: 'GBP',
+      4: 'JPY',
+      5: 'AUD',
+      6: 'CAD',
+      7: 'CHF',
+      8: 'CNY',
+      9: 'MXN',
+      10: 'ARS'
+    };
+    setSelectedFiatCurrency(currencies[selectedFiat] || 'USD');
+  }, [selectedFiat]);
+
+  const convertedCryptos = useMemo(() => 
+    cryptos.map(crypto => ({
+      ...crypto,
+      currentPrice: convertCurrency(crypto.currentPrice, 'USD', selectedFiatCurrency),
+      lastPrice: convertCurrency(crypto.lastPrice, 'USD', selectedFiatCurrency)
+    }))
+  , [cryptos, selectedFiatCurrency]);
+
+  const convertedExchanges = useMemo(() => 
+    socketExchanges.map(exchange => ({
+      ...exchange,
+      buyPrice: convertCurrency(exchange.buyPrice, 'USD', selectedFiatCurrency),
+      sellPrice: convertCurrency(exchange.sellPrice, 'USD', selectedFiatCurrency)
+    }))
+  , [socketExchanges, selectedFiatCurrency]);
+
   return (
     <>
       <TopBar />
@@ -142,14 +177,22 @@ const Dashboard = () => {
         </h1>
         <h2 className={styles.subtitle}>{t("homepage subtitle")}</h2>
         <div className={styles.cryptoCardsContainer}>
-          {cryptos.map((crypto, index) => (
-            <CryptoCard key={index} crypto={crypto} />
+          {convertedCryptos.map((crypto, index) => (
+            <CryptoCard 
+              key={index} 
+              crypto={crypto}
+              currency={selectedFiatCurrency}
+            />
           ))}
           <button
             onClick={() => setShowMainCryptosPopup(true)}
             className={styles.addCardButton}
+            title={t("Add to watchlist")}
           >
-            <PlusIcon />
+            <div className={styles.addCardContent}>
+              <PlusIcon />
+              <span className={styles.addCardText}>{t("Add Crypto")}</span>
+            </div>
           </button>
         </div>
         <div className={styles.filters}>
@@ -195,7 +238,7 @@ const Dashboard = () => {
           </p>
           <p className={styles.cryptoExchanges}>
             {
-              socketExchanges?.filter(
+              convertedExchanges?.filter(
                 (exchange) => exchange.symbol === selectedSymbol
               )?.length
             }{" "}
@@ -204,9 +247,10 @@ const Dashboard = () => {
         </div>
         <div className={styles.tableContainer}>
           <ExchangeTable
-            exchanges={socketExchanges}
+            exchanges={convertedExchanges}
             cryptoName={selectedSymbol}
             exchangeReviews={exchangeReviews}
+            currency={selectedFiatCurrency}
           />
         </div>
         <Carrousel invertDots={true} />

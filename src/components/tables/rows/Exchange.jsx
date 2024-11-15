@@ -3,15 +3,15 @@
 import styles from "./Exchange.module.css";
 
 import StarsViewer from "@/components/stars/starsViewer/StarsViewer";
+import { formatCurrency } from "@/utils/currencyConverter";
 
 import { useState } from "react";
 
-import { formatThousands } from "@/utils/formatThousands";
 import ExchangeReviewsPopup from "@/components/popups/exchangeReviewsPopup/ExchangeReviewsPopup";
 import SimpleArrowIcon from "@/components/icons/simpleArrowIcon";
 import ExchangeDetailsPopup from "@/components/popups/exchangeDetailsPopup/ExchangeDetailsPopup";
 
-const ExchangeRow = ({ exchange, onClick }) => {
+const ExchangeRow = ({ exchange, onClick, currency = 'USD' }) => {
   const [showReviewsPopup, setShowReviewsPopup] = useState(false);
 
   const handleRatingClick = (e) => {
@@ -37,7 +37,7 @@ const ExchangeRow = ({ exchange, onClick }) => {
         </td>
         <td className={styles.column2} data-label="Buy price">
           <p className={styles.buyPrice}>
-            US$ {formatThousands(exchange?.buyPrice)}
+            {formatCurrency(exchange?.buyPrice, currency)}
           </p>
         </td>
         <td className={styles.column3} data-label="Spread">
@@ -55,7 +55,7 @@ const ExchangeRow = ({ exchange, onClick }) => {
         </td>
         <td className={styles.column4} data-label="Sell price">
           <p className={styles.sellPrice}>
-            US$ {formatThousands(exchange?.sellPrice)}
+            {formatCurrency(exchange?.sellPrice, currency)}
           </p>
         </td>
         <td>
